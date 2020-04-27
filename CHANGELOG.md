@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `teams` will be documented in this file
+All notable changes to `microsoft-teams` will be documented in this file
 
 ## 2.0.0 - 2020-04-27
 

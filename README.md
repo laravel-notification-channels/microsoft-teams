@@ -1,13 +1,13 @@
 # Microsoft Teams Notifications Channel for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/teams.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/teams)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/microsoft-teams.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/microsoft-teams)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/teams/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/teams)
+[![Build Status](https://img.shields.io/travis/laravel-notification-channels/microsoft-teams/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/microsoft-teams)
 [![StyleCI](https://styleci.io/repos/255359620/shield)](https://styleci.io/repos/255359620)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/teams.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/teams)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/teams/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/teams/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/teams.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/teams)
+[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/microsoft-teams.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/microsoft-teams)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/microsoft-teams/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/microsoft-teams/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/microsoft-teams.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/microsoft-teams)
 
 This package makes it easy to send notifications using [Microsoft Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) with Laravel 5.5+, 6.x and 7.x
 
@@ -39,7 +39,7 @@ return MicrosoftTeamsMessage::create()
 You can install the package via composer:
 
 ``` bash
-composer require laravel-notification-channels/teams
+composer require laravel-notification-channels/microsoft-teams
 ```
 
 ### Setting up the Connector
