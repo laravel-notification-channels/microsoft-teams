@@ -45,7 +45,7 @@ class MicrosoftTeamsChannelTest extends TestCase
                     'themeColor' => '#1976D2',
                     'title' => 'Hello, MicrosoftTeams!',
                     'text' => 'This is my content.',
-                ],
+                ]
             )
             ->once()
             ->andReturn(new Response(200));
@@ -78,7 +78,7 @@ class MicrosoftTeamsChannelTest extends TestCase
                     'themeColor' => '#1976D2',
                     'title' => 'Hello, MicrosoftTeams!',
                     'text' => 'This is my content.',
-                ],
+                ]
             )
             ->once()
             ->andReturn(new Response(200));
