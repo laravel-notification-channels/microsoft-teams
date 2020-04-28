@@ -1,0 +1,41 @@
+{
+    "name": "laravel-notification-channels/microsoft-teams",
+    "description": "A Laravel Notification Channel for Microsoft Teams",
+    "homepage": "https://github.com/laravel-notification-channels/microsoft-teams",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Madner",
+            "email": "tobias.madner@gmx.at",
+            "homepage": "https://www.pinpoll.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "guzzlehttp/guzzle": "^6.5",
+        "illuminate/notifications": "~5.5 || ~6.0 || ~7.0",
+        "illuminate/support": "~5.5 || ~6.0 || ~7.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.2.3",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\MicrosoftTeams\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\MicrosoftTeams\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
