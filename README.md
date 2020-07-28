@@ -41,6 +41,15 @@ You can install the package via composer:
 composer require laravel-notification-channels/microsoft-teams
 ```
 
+Next, if you're using Laravel _without_ auto-discovery, add the service provider to `config/app.php`:
+
+```bash
+'providers' => [
+    // ...
+    NotificationChannels\MicrosoftTeams\MicrosoftTeamsServiceProvider::class,
+],
+```
+
 ### Setting up the Connector
 
 Please check out [this](https://docs.microsoft.com/en-gb/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#add-an-incoming-webhook-to-a-teams-channel) for setting up and adding a webhook connector to your Team's channel. Basic Markdown is supported, please also check out the [message card reference article](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#httppost-action) which goes in more detail about the do's and don'ts.
