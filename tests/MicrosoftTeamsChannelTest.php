@@ -97,7 +97,7 @@ class TestNotifiable
 {
     use Notifiable;
 
-    public function routeNotificationForMicrosoftTeams()
+    public function routeNotificationForMicrosoftTeams(Notification $notification)
     {
         return 'https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567';
     }
