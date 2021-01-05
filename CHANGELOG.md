@@ -2,6 +2,10 @@
 
 All notable changes to `microsoft-teams` will be documented in this file
 
+## 1.1.0 - 2021-01-05
+Changed registered notification driver from 'teams' to 'microsoftTeams' to be consistent. Current Release now accepts both names.
+Please use 'microsoftTeams' for all calls since 'teams' will be removed with the next major release.
+
 ## 1.0.1 - 2020-04-27
 
 ### Breaking Change

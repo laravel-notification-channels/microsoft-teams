@@ -12,7 +12,7 @@ This package makes it easy to send notifications using [Microsoft Teams](https:/
 
 ```php
 return MicrosoftTeamsMessage::create()
-    ->to(config('services.teams.sales_url'))
+    ->to(config('services.microsoft_teams.sales_url'))
     ->type('success')
     ->title('Subscription Created')
     ->content('Yey, you got a **new subscription**. Maybe you want to contact him if he needs any support?')
@@ -63,7 +63,7 @@ Add the following code to your `config/services.php`:
 ```php
 // config/services.php
 ...
-'teams' => [
+'microsoft_teams' => [
     'webhook_url' => env('TEAMS_WEBHOOK_URL'),
 ],
 ...
@@ -74,7 +74,7 @@ You can also add multiple webhooks if you have multiple teams or channels, it's 
 ```php
 // config/services.php
 ...
-'teams' => [
+'microsoft_teams' => [
     'sales_url' => env('TEAMS_SALES_WEBHOOK_URL'),
     'dev_url' => env('TEAMS_DEV_WEBHOOK_URL'),
 ],
@@ -99,7 +99,7 @@ class SubscriptionCreated extends Notification
     public function toMicrosoftTeams($notifiable)
     {
         return MicrosoftTeamsMessage::create()
-            ->to(config('services.teams.sales_url'))
+            ->to(config('services.microsoft_teams.sales_url'))
             ->type('success')
             ->title('Subscription Created')
             ->content('Yey, you got a **new subscription**. Maybe you want to contact him if he needs any support?')
@@ -113,7 +113,7 @@ Instead of adding the `to($url)` method for the recipient you can also add the `
 ```php
 public function routeNotificationForMicrosoftTeams(Notification $notification)
 {
-    return config('services.teams.sales_url')
+    return config('services.microsoft_teams.sales_url')
 }
 ```
 
