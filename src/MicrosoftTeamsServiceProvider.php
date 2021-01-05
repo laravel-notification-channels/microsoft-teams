@@ -30,7 +30,13 @@ class MicrosoftTeamsServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Info: Name 'teams' is deprecated an will be removed with the next major release
+        // Please use 'microsoftTeams' for all calls
         Notification::extend('teams', static function (Container $app) {
+            return $app->make(MicrosoftTeamsChannel::class);
+        });
+
+        Notification::extend('microsoftTeams', static function (Container $app) {
             return $app->make(MicrosoftTeamsChannel::class);
         });
     }
