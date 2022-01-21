@@ -44,5 +44,7 @@
                 "NotificationChannels\\MicrosoftTeams\\MicrosoftTeamsServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
