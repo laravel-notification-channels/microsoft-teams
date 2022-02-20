@@ -121,7 +121,7 @@ public function routeNotificationForMicrosoftTeams(Notification $notification)
 }
 ```
 
-## On-Demand Notification Usage
+### On-Demand Notification Usage
 
 
 To use on demand notifications you can use the `route` method on the Notification facade. 
