@@ -35,7 +35,7 @@ class MicrosoftTeamsChannel
 
         // if the recipient is not defined get it from the notifiable object
         if ($message->toNotGiven()) {
-            $to = $notifiable->routeNotificationFor('microsoftTeams');
+            $to = $notifiable->routeNotificationFor('microsoftTeams', $notification);
 
             $message->to($to);
         }
