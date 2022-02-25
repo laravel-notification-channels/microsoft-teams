@@ -20,17 +20,21 @@ return MicrosoftTeamsMessage::create()
 ```
 ## Contents
 
-- [Installation](#installation)
-	- [Setting up the Connector](#setting-up-the-Connector)
-	- [Setting up the MicrosoftTeams service](#setting-up-the-MicrosoftTeams-service)
-- [Usage](#usage)
-	- [Available Message methods](#available-message-methods)
-- [Changelog](#changelog)
-- [Testing](#testing)
-- [Security](#security)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
+- [Microsoft Teams Notifications Channel for Laravel](#microsoft-teams-notifications-channel-for-laravel)
+  - [Contents](#contents)
+  - [Installation](#installation)
+    - [Setting up the Connector](#setting-up-the-connector)
+    - [Setting up the MicrosoftTeams service](#setting-up-the-microsoftteams-service)
+  - [Usage](#usage)
+    - [On-Demand Notification Usage](#on-demand-notification-usage)
+    - [Available Message methods](#available-message-methods)
+      - [Sections](#sections)
+  - [Changelog](#changelog)
+  - [Testing](#testing)
+  - [Security](#security)
+  - [Contributing](#contributing)
+  - [Credits](#credits)
+  - [License](#license)
 
 
 ## Installation
@@ -115,6 +119,16 @@ public function routeNotificationForMicrosoftTeams(Notification $notification)
 {
     return config('services.teams.sales_url')
 }
+```
+
+### On-Demand Notification Usage
+
+
+To use on demand notifications you can use the `route` method on the Notification facade. 
+
+```php
+Notification::route(MicrosoftTeamsChannel::class,null)
+    ->notify(new SubscriptionCreated());
 ```
 
 
