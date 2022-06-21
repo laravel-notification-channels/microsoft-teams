@@ -52,19 +52,17 @@ class MicrosoftTeamsChannelTest extends TestCase
 
         $channel = new MicrosoftTeamsChannel($this->microsoftTeams);
 
-        $response = $channel->send(new TestNotifiable, new TestNotification);
+        $response = $channel->send(new TestNotifiable(), new TestNotification());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
     /** @test */
     public function it_does_not_send_a_notification_if_the_notifiable_does_not_provide_a_microsoft_teams_channel()
     {
-        $this->markTestSkipped('Needs to be solved in Laravel 9');
-
         $this->expectException(CouldNotSendNotification::class);
 
         $channel = new MicrosoftTeamsChannel($this->microsoftTeams);
-        $channel->send(new TestNotifiableWithoutRoute, new TestNotificationNoWebhookUrl);
+        $channel->send(new TestNotifiableWithoutRoute(), new TestNotificationNoWebhookUrl());
     }
 
     /** @test */
@@ -87,7 +85,7 @@ class MicrosoftTeamsChannelTest extends TestCase
 
         $channel = new MicrosoftTeamsChannel($this->microsoftTeams);
 
-        $response = $channel->send(new TestNotifiableWithoutRoute, new TestNotificationWithToParam);
+        $response = $channel->send(new TestNotifiableWithoutRoute(), new TestNotificationWithToParam());
         $this->assertEquals(200, $response->getStatusCode());
     }
 }
@@ -120,7 +118,7 @@ class TestNotification extends Notification
 {
     public function toMicrosoftTeams()
     {
-        return (new MicrosoftTeamsMessage)
+        return (new MicrosoftTeamsMessage())
             ->title('Hello, MicrosoftTeams!')
             ->content('This is my content.');
     }
@@ -138,7 +136,7 @@ class TestNotificationNoWebhookUrl extends Notification
      */
     public function toMicrosoftTeams($notifiable): MicrosoftTeamsMessage
     {
-        return (new MicrosoftTeamsMessage)
+        return (new MicrosoftTeamsMessage())
             ->title('Hello, MicrosoftTeams!')
             ->content('This is my content.');
     }
@@ -156,7 +154,7 @@ class TestNotificationWithToParam extends Notification
      */
     public function toMicrosoftTeams($notifiable): MicrosoftTeamsMessage
     {
-        return (new MicrosoftTeamsMessage)
+        return (new MicrosoftTeamsMessage())
             ->title('Hello, MicrosoftTeams!')
             ->content('This is my content.')
             ->to('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567');
