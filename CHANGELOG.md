@@ -2,9 +2,18 @@
 
 All notable changes to `microsoft-teams` will be documented in this file
 
-## 1.1.0 - 2021-01-05
+## 1.1.3 - 2022-06-21
+Update Readme to support Laravel 9.x
+
+## 1.1.2 - 2022-06-03
 Changed registered notification driver from 'teams' to 'microsoftTeams' to be consistent. Current Release now accepts both names.
 Please use 'microsoftTeams' for all calls since 'teams' will be removed with the next major release.
+
+## 1.1.1 - 2022-01-21
+Support Laravel 9.x
+
+## 1.1.0 - 2020-09-10
+Support Laravel 8.x
 
 ## 1.0.1 - 2020-04-27
 
