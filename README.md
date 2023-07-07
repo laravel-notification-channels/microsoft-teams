@@ -117,7 +117,7 @@ Instead of adding the `to($url)` method for the recipient you can also add the `
 ```php
 public function routeNotificationForMicrosoftTeams(Notification $notification)
 {
-    return config('services.microsoft_teams.sales_url')
+    return config('services.microsoft_teams.sales_url');
 }
 ```
 
