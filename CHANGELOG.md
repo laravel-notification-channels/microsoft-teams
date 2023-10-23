@@ -2,6 +2,9 @@
 
 All notable changes to `microsoft-teams` will be documented in this file
 
+## 1.1.4 - 2023-01-25
+Update Readme to support Laravel 10.x
+
 ## 1.1.3 - 2022-06-21
 Update Readme to support Laravel 9.x
 
