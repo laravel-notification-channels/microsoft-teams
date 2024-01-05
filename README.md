@@ -47,7 +47,7 @@ composer require laravel-notification-channels/microsoft-teams
 
 Next, if you're using Laravel _without_ auto-discovery, add the service provider to `config/app.php`:
 
-```bash
+```php
 'providers' => [
     // ...
     NotificationChannels\MicrosoftTeams\MicrosoftTeamsServiceProvider::class,
