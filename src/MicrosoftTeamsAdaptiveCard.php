@@ -2,18 +2,15 @@
 
 namespace NotificationChannels\MicrosoftTeams;
 
-
-class MicrosoftTeamsAdaptiveCard extends MicrosoftTeamsMessage
+class MicrosoftTeamsAdaptiveCard
 {
+    
     protected $payload = [];
-
-    protected $type = 'message';
 
     protected $webhookUrl = null;
 
     public function __construct()
     {
-
         $this->payload = [
             "type" => "message",
             "attachments" => [
@@ -28,11 +25,10 @@ class MicrosoftTeamsAdaptiveCard extends MicrosoftTeamsMessage
                     ]
                 ]
             ]
-
         ];
     }
 
-    public static function create(string $content = ''): self
+    public static function create(): self
     {
         return new self();
     }
@@ -47,17 +43,17 @@ class MicrosoftTeamsAdaptiveCard extends MicrosoftTeamsMessage
         return $this;
     }
 
-    public function type(string $type): self
+    public function getWebhookUrl(): string
     {
-        $types = [
-            'message' => 'message', 
-        ];
-        $this->type = $types[$type];
-
-        return $this;
+        return $this->webhookUrl;
     }
 
-    public function title(string $title, array $params = []): self
+    public function toNotGiven(): bool
+    {
+        return ! $this->webhookUrl;
+    }
+
+    public function cardTitle(string $title): self
     {
         $this->payload['attachments'][0]['content']['body'][0] = [
             'type' => 'TextBlock',
@@ -66,20 +62,6 @@ class MicrosoftTeamsAdaptiveCard extends MicrosoftTeamsMessage
             'text' => $title,
             'weight' => 'bolder',
             'size' => 'large',
-        ];
-
-        return $this;
-    }
-
-    public function content(string $content, array $params = []): self
-    {
-        $this->payload['attachments'][0]['content']['body'][] = [
-            'type' => 'TextBlock',
-            // 'text' => $this->convertHtmlToMarkdown($content),
-            'text' => $content,
-            'wrap' => true,
-            'size' => 'medium',
-            'separator' => true,
         ];
 
         return $this;
@@ -95,32 +77,14 @@ class MicrosoftTeamsAdaptiveCard extends MicrosoftTeamsMessage
         return $this;
     }
 
-
     public function cardActions(array $actions): self
     {
         foreach ($actions as $action) {
             $this->payload['attachments'][0]['content']['actions'][] = $action->toArray();
         }
-        
-
+    
         return $this;
     }
-
-   
-
-    public function button(string $text, string $url = '', array $params = []): self
-    {
-        $this->payload['attachments'][0]['content']['actions'][] = [
-            'type' => 'Action.OpenUrl',
-            'title' => $text,
-            'url' => $url,
-            'style' => 'positive',
-        ];
-
-        return $this;
-    }
-
-
 
     public function toArray(): array
     {

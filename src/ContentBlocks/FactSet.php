@@ -8,27 +8,27 @@ use NotificationChannels\MicrosoftTeams\Enums\Spacing;
 
 class FactSet
 {
-    private ?Spacing $spacing;
+    protected ?Spacing $spacing;
 
-    private array $facts;
+    protected array $facts;
 
-    private ?bool $seperator;
+    protected ?bool $separator;
 
-    private string $type =  'FactSet';
+    protected string $type =  'FactSet';
 
-    public function setSpacing(Spacing $spacing)
+    public function setSpacing(Spacing $spacing) : self
     {
         $this->spacing = $spacing;
         return $this;
     }
 
-    public function setSeperator(bool $seperator)
+    public function setSeparator(bool $separator) : self
     {
-        $this->seperator = $seperator;
+        $this->separator = $separator;
         return $this;
     }
 
-    public function setFacts(array $facts)
+    public function setFacts(array $facts) : self
     {
         $this->facts = $facts;
         return $this;
@@ -39,7 +39,7 @@ class FactSet
         return new self();
     }    
 
-    public function toArray()
+    public function toArray() : array
     {
         $factSet = [];
         $properties = get_object_vars($this);

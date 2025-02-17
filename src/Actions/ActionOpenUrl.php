@@ -9,35 +9,35 @@ use NotificationChannels\MicrosoftTeams\Enums\Mode;
 
 class ActionOpenUrl
 {
-    private string $type = 'Action.OpenUrl';
+    protected string $type = 'Action.OpenUrl';
 
-    private string $title;
+    protected string $title;
 
-    private Mode $mode;
+    protected Mode $mode;
 
-    private ButtonStyle $style;
+    protected ButtonStyle $style;
 
-    private string $url;
+    protected string $url;
 
-    public function setTitle(string $title)
+    public function setTitle(string $title) : self
     {
         $this->title = $title;
         return $this;
     }
 
-    public function setMode(Mode $mode)
+    public function setMode(Mode $mode) : self
     {
         $this->mode = $mode;
         return $this;
     }
 
-    public function setStyle(ButtonStyle $style)
+    public function setStyle(ButtonStyle $style) : self
     {
         $this->style = $style;
         return $this;
     }
 
-    public function setUrl(string $url)
+    public function setUrl(string $url) : self
     {
         $this->url = $url;
         return $this;
@@ -48,12 +48,12 @@ class ActionOpenUrl
         return new self();
     }    
 
-    public function toArray()
+    public function toArray() : array
     {
         $actionOpenUrl = [];
         $properties = get_object_vars($this);
         foreach ($properties as $propertyName => $propertyValue) {
-
+            
             if ($propertyValue instanceof BackedEnum) {
                 $actionOpenUrl[$propertyName] = $propertyValue->value;
                 continue;

@@ -33,7 +33,7 @@ class MicrosoftTeamsChannel
     {
         $message = $notification->toMicrosoftTeams($notifiable);
 
-        if (! $message instanceof MicrosoftTeamsMessage) {
+        if (! $message instanceof MicrosoftTeamsAdaptiveCard && ! $message instanceof MicrosoftTeamsMessage) {
             return;
         }
 

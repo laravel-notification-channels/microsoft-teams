@@ -11,59 +11,59 @@ use NotificationChannels\MicrosoftTeams\Enums\Spacing;
 
 class Icon
 {
-    private string $name;
+    protected string $name;
 
-    private ?Spacing $spacing;
+    protected ?Spacing $spacing;
 
-    private ?bool $seperator;
+    protected ?bool $separator;
 
-    private string $type =  'Icon';
+    protected string $type =  'Icon';
 
-    private ?HorizontalAlignment $horizontalAlignment;
+    protected ?HorizontalAlignment $horizontalAlignment;
 
-    private ?IconStyle $style;
+    protected ?IconStyle $style;
 
-    private ?Color $color;
+    protected ?Color $color;
 
-    private ?IconSize $size;
+    protected ?IconSize $size;
 
-    public function setName(string $name)
+    public function setName(string $name) : self
     {
         $this->name = $name;
         return $this;
     }
 
-    public function setColor(Color $color)
+    public function setColor(Color $color) : self
     {
         $this->color = $color;
         return $this;
     }
 
-    public function setSpacing(Spacing $spacing)
+    public function setSpacing(Spacing $spacing) : self
     {
         $this->spacing = $spacing;
         return $this;
     }
 
-    public function setSeperator(bool $seperator)
+    public function setSeparator(bool $separator) : self
     {
-        $this->seperator = $seperator;
+        $this->separator = $separator;
         return $this;
     }
 
-    public function setSize(IconSize $iconSize)
+    public function setSize(IconSize $iconSize) : self
     {
         $this->size = $iconSize;
         return $this;
     }
 
-    public function setStyle(IconStyle $iconStyle)
+    public function setStyle(IconStyle $iconStyle) : self
     {
         $this->style = $iconStyle;
         return $this;
     }
 
-    public function setHorizontalAlignment(HorizontalAlignment $horizontalAlignment)
+    public function setHorizontalAlignment(HorizontalAlignment $horizontalAlignment) : self
     {
         $this->horizontalAlignment = $horizontalAlignment;
         return $this;
@@ -74,7 +74,7 @@ class Icon
         return new self();
     }    
 
-    public function toArray()
+    public function toArray() : array
     {
         $icon = [];
         $properties = get_object_vars($this);

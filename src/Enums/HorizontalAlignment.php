@@ -4,7 +4,7 @@ namespace NotificationChannels\MicrosoftTeams\Enums;
 
 enum HorizontalAlignment : string
 {
-    case Left = 'None';
-    case Right = 'Small';
+    case Left = 'Left';
+    case Right = 'Right';
     case Center = 'Center';
 }

@@ -13,99 +13,99 @@ use NotificationChannels\MicrosoftTeams\Enums\Weight;
 
 class TextBlock
 {
-    private string $text;
+    protected string $text;
 
-    private ?Spacing $spacing;
+    protected ?Spacing $spacing;
 
-    private ?bool $seperator;
+    protected ?bool $separator;
 
-    private string $type =  'TextBlock';
+    protected string $type =  'TextBlock';
 
-    private ?HorizontalAlignment $horizontalAlignment;
+    protected ?HorizontalAlignment $horizontalAlignment;
 
-    private ?int $maxLines;
+    protected ?int $maxLines;
 
-    private ?BaseStyle $style;
+    protected ?BaseStyle $style;
 
-    private ?FontType $fontType;
+    protected ?FontType $fontType;
 
-    private ?FontSize $size;
+    protected ?FontSize $size;
 
-    private ?Weight $weight;
+    protected ?Weight $weight;
 
-    private ?bool $isSubtle;
+    protected ?bool $isSubtle;
     
-    private ?Color $color;
+    protected ?Color $color;
 
-    private bool $wrap = true;
+    protected bool $wrap = true;
 
-    public function setText(string $text)
+    public function setText(string $text) : self
     {
         $this->text = $text;
         return $this;
     }
 
-    public function setColor(Color $color)
+    public function setColor(Color $color) : self
     {
         $this->color = $color;
         return $this;
     }
 
-    public function setWrap(bool $wrap)
+    public function setWrap(bool $wrap) : self
     {
         $this->wrap = $wrap;
         return $this;
     }
 
-    public function setSpacing(Spacing $spacing)
+    public function setSpacing(Spacing $spacing) : self
     {
         $this->spacing = $spacing;
         return $this;
     }
 
-    public function setSeperator(bool $seperator)
+    public function setSeparator(bool $separator) : self
     {
-        $this->seperator = $seperator;
+        $this->separator = $separator;
         return $this;
     }
 
-    public function setFontType(FontType $fontType)
+    public function setFontType(FontType $fontType) : self
     {
         $this->fontType = $fontType;
         return $this;
     }
 
-    public function setSize(FontSize $fontSize)
+    public function setSize(FontSize $fontSize) : self
     {
         $this->size = $fontSize;
         return $this;
     }
 
-    public function setWeight(Weight $weight)
+    public function setWeight(Weight $weight) : self
     {
         $this->weight = $weight;
         return $this;
     }
 
-    public function setIsSubtle(bool $isSubtle)
+    public function setIsSubtle(bool $isSubtle) : self
     {
         $this->isSubtle = $isSubtle;
         return $this;
     }
 
-    public function setStyle(BaseStyle $style)
+    public function setStyle(BaseStyle $style) : self
     {
         $this->style = $style;
         return $this;
     }
 
-    public function setHorizontalAlignment(HorizontalAlignment $horizontalAlignment)
+    public function setHorizontalAlignment(HorizontalAlignment $horizontalAlignment) : self
     {
         $this->horizontalAlignment = $horizontalAlignment;
         return $this;
     }
 
-    public function setMaximumLInes(int $maxLines)
+    public function setMaximumLInes(int $maxLines) : self
     {
         $this->maxLines = $maxLines;
         return $this;
@@ -116,7 +116,7 @@ class TextBlock
         return new self();
     }    
 
-    public function toArray()
+    public function toArray() : array
     {
         $textBlock = [];
         $properties = get_object_vars($this);

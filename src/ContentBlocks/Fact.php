@@ -4,17 +4,17 @@ namespace NotificationChannels\MicrosoftTeams\ContentBlocks;
 
 class Fact
 {
-    private string $title;
+    protected string $title;
 
-    private string $value;
+    protected string $value;
 
-    public function setTitle(string $title)
+    public function setTitle(string $title) : self
     {
         $this->title = $title;
         return $this;
     }
 
-    public function setValue(string $value)
+    public function setValue(string $value) : self
     {
         $this->value = $value;
         return $this;
@@ -25,7 +25,7 @@ class Fact
         return new self();
     }    
 
-    public function toArray()
+    public function toArray() : array
     {
         $fact = [];
         $properties = get_object_vars($this);
