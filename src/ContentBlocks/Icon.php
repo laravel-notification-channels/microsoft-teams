@@ -2,90 +2,144 @@
 
 namespace NotificationChannels\MicrosoftTeams\ContentBlocks;
 
-use BackedEnum;
-use NotificationChannels\MicrosoftTeams\Enums\Color;
-use NotificationChannels\MicrosoftTeams\Enums\HorizontalAlignment;
-use NotificationChannels\MicrosoftTeams\Enums\IconSize;
-use NotificationChannels\MicrosoftTeams\Enums\IconStyle;
-use NotificationChannels\MicrosoftTeams\Enums\Spacing;
-
 class Icon
 {
-    protected string $name;
+    /** @var string Property Type */
+    protected $type =  'Icon';
 
-    protected ?Spacing $spacing;
+    /** @var string Name of the Icon */
+    protected $name;
 
-    protected ?bool $separator;
+    /** @var string Spacing of the Icon. (None,Small,Default,Medium,Large,ExtraLarge,Padding) */
+    protected $spacing;
 
-    protected string $type =  'Icon';
+    /** @var bool Icon Separator. */
+    protected $separator;
 
-    protected ?HorizontalAlignment $horizontalAlignment;
+    /** @var string Horizontal Alignment of Icon. (Left,Center,Right) */
+    protected $horizontalAlignment;
 
-    protected ?IconStyle $style;
+    /** @var string Style of Icon. (Regular,Filled) */
+    protected $style;
 
-    protected ?Color $color;
+    /** @var string Color of Icon. (Default,Dark,Light,Accent,Good,Warning,Attention) */
+    protected $color;
 
-    protected ?IconSize $size;
+    /** @var string Size of Icon. (xxSmall,xSmall,Small,Standard,Medium,Large,xLarge,xxLarge) */
+    protected $size;
 
+    /**
+     * @return self
+     */
+    public static function create(): self
+    {
+        return new self();
+    }    
+
+    /**
+     * Set the name.
+     *
+     * @param string $name
+     * 
+     * @return Icon
+     */
     public function setName(string $name) : self
     {
         $this->name = $name;
         return $this;
     }
 
-    public function setColor(Color $color) : self
+    /**
+     * Set the color.
+     *
+     * @param string $color
+     * 
+     * @return Icon
+     */
+    public function setColor(string $color) : self
     {
         $this->color = $color;
         return $this;
     }
 
-    public function setSpacing(Spacing $spacing) : self
+    /**
+     * Set the spacing.
+     *
+     * @param string $spacing
+     * 
+     * @return Icon
+     */
+    public function setSpacing(string $spacing) : self
     {
         $this->spacing = $spacing;
         return $this;
     }
 
+    /**
+     * Set the seperator.
+     *
+     * @param bool $seperator
+     * 
+     * @return Icon
+     */
     public function setSeparator(bool $separator) : self
     {
         $this->separator = $separator;
         return $this;
     }
 
-    public function setSize(IconSize $iconSize) : self
+    /**
+     * Set the size.
+     *
+     * @param string $size
+     * 
+     * @return Icon
+     */
+    public function setSize(string $size) : self
     {
-        $this->size = $iconSize;
+        $this->size = $size;
         return $this;
     }
 
-    public function setStyle(IconStyle $iconStyle) : self
+    /**
+     * Set the style.
+     *
+     * @param string $style
+     * 
+     * @return Icon
+     */
+    public function setStyle(string $style) : self
     {
-        $this->style = $iconStyle;
+        $this->style = $style;
         return $this;
     }
 
-    public function setHorizontalAlignment(HorizontalAlignment $horizontalAlignment) : self
+    /**
+     * Set the horizontal alignment.
+     *
+     * @param string $horizontalAlignment
+     * 
+     * @return Icon
+     */
+    public function setHorizontalAlignment(string $horizontalAlignment) : self
     {
         $this->horizontalAlignment = $horizontalAlignment;
         return $this;
     }
 
-    public static function create(): self
-    {
-        return new self();
-    }    
-
+    /**
+     * Returns Icon properties as an array.
+     *
+     * @return array
+     */
     public function toArray() : array
     {
         $icon = [];
         $properties = get_object_vars($this);
         foreach ($properties as $propertyName => $propertyValue) {
-
-            if ($propertyValue instanceof BackedEnum) {
-                $icon[$propertyName] = $propertyValue->value;
-                continue;
+            if (!is_null($propertyValue)) {
+                $icon[$propertyName] = $propertyValue;
             }
-
-            $icon[$propertyName] = $propertyValue;
         }
 
         return $icon;

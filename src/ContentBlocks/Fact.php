@@ -4,33 +4,59 @@ namespace NotificationChannels\MicrosoftTeams\ContentBlocks;
 
 class Fact
 {
-    protected string $title;
+    /** @var string Fact Title */
+    protected $title;
 
-    protected string $value;
+    /** @var string Fact Value */
+    protected $value;
 
+    /**
+     * @return self
+     */
+    public static function create(): self
+    {
+        return new self();
+    }    
+
+    /**
+     * Set the title.
+     *
+     * @param string $title
+     * 
+     * @return Fact
+     */
     public function setTitle(string $title) : self
     {
         $this->title = $title;
         return $this;
     }
 
+    /**
+     * Set the value.
+     *
+     * @param string $value
+     * 
+     * @return Fact
+     */
     public function setValue(string $value) : self
     {
         $this->value = $value;
         return $this;
     }
 
-    public static function create(): self
-    {
-        return new self();
-    }    
-
+    /**
+     * Returns Fact properties as an array.
+     *
+     * @return array
+     */
     public function toArray() : array
     {
         $fact = [];
         $properties = get_object_vars($this);
         foreach ($properties as $propertyName => $propertyValue) {
-            $fact[$propertyName] = $propertyValue;
+            if (!is_null($propertyValue)) {
+                $fact[$propertyName] = $propertyValue;
+            }
         }
 
         return $fact;

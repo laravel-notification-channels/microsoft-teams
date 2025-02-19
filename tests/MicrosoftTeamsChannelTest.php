@@ -6,8 +6,10 @@ use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Mockery;
+use NotificationChannels\MicrosoftTeams\ContentBlocks\TextBlock;
 use NotificationChannels\MicrosoftTeams\Exceptions\CouldNotSendNotification;
 use NotificationChannels\MicrosoftTeams\MicrosoftTeams;
+use NotificationChannels\MicrosoftTeams\MicrosoftTeamsAdaptiveCard;
 use NotificationChannels\MicrosoftTeams\MicrosoftTeamsChannel;
 use NotificationChannels\MicrosoftTeams\MicrosoftTeamsMessage;
 use PHPUnit\Framework\TestCase;
@@ -35,17 +37,40 @@ class MicrosoftTeamsChannelTest extends TestCase
     /** @test */
     public function it_can_send_a_notification()
     {
+        $payload = [
+            'type' => 'message',
+            'attachments' => [
+                [
+                    'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    'content' => [
+                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
+                        'type' => 'AdaptiveCard',
+                        'version' => '1.5',
+                        'body' => [
+                            [
+                                'type' => 'TextBlock',
+                                'wrap' => true,
+                                'style' => 'heading',
+                                'text' => 'Title',
+                                'weight' => 'bolder',
+                                'size' => 'large',
+                            ],
+                            [
+                                'type' => 'TextBlock',
+                                'text' => 'Text',
+                                'wrap' => true
+                            ]
+                        ],
+                        'actions' => []
+                    ]
+                ]
+            ]
+        ];
+
         $this->microsoftTeams->shouldReceive('send')
             ->with(
                 'https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567',
-                [
-                    '@type' => 'MessageCard',
-                    '@context' => 'https://schema.org/extensions',
-                    'summary' => 'Hello, MicrosoftTeams!',
-                    'themeColor' => '#1976D2',
-                    'title' => 'Hello, MicrosoftTeams!',
-                    'text' => 'This is my content.',
-                ]
+                $payload
             )
             ->once()
             ->andReturn(new Response(200));
@@ -68,17 +93,39 @@ class MicrosoftTeamsChannelTest extends TestCase
     /** @test */
     public function it_does_send_a_notification_if_the_notifiable_does_not_provide_a_microsoft_teams_channel_but_the_to_param_is_set()
     {
+        $payload = [
+            'type' => 'message',
+            'attachments' => [
+                [
+                    'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    'content' => [
+                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
+                        'type' => 'AdaptiveCard',
+                        'version' => '1.5',
+                        'body' => [
+                            [
+                                'type' => 'TextBlock',
+                                'wrap' => true,
+                                'style' => 'heading',
+                                'text' => 'Title',
+                                'weight' => 'bolder',
+                                'size' => 'large',
+                            ],
+                            [
+                                'type' => 'TextBlock',
+                                'text' => 'Text',
+                                'wrap' => true
+                            ]
+                        ],
+                        'actions' => []
+                    ]
+                ]
+            ]
+        ];
         $this->microsoftTeams->shouldReceive('send')
             ->with(
                 'https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567',
-                [
-                    '@type' => 'MessageCard',
-                    '@context' => 'https://schema.org/extensions',
-                    'summary' => 'Hello, MicrosoftTeams!',
-                    'themeColor' => '#1976D2',
-                    'title' => 'Hello, MicrosoftTeams!',
-                    'text' => 'This is my content.',
-                ]
+                $payload
             )
             ->once()
             ->andReturn(new Response(200));
@@ -118,9 +165,9 @@ class TestNotification extends Notification
 {
     public function toMicrosoftTeams()
     {
-        return (new MicrosoftTeamsMessage())
-            ->title('Hello, MicrosoftTeams!')
-            ->content('This is my content.');
+        return (new MicrosoftTeamsAdaptiveCard())
+            ->title('Title')
+            ->content([TextBlock::create()->setText('Text')]);
     }
 }
 
@@ -134,11 +181,11 @@ class TestNotificationNoWebhookUrl extends Notification
      *
      * @return MicrosoftTeamsMessage
      */
-    public function toMicrosoftTeams($notifiable): MicrosoftTeamsMessage
+    public function toMicrosoftTeams($notifiable): MicrosoftTeamsAdaptiveCard
     {
-        return (new MicrosoftTeamsMessage())
-            ->title('Hello, MicrosoftTeams!')
-            ->content('This is my content.');
+        return (new MicrosoftTeamsAdaptiveCard())
+            ->title('Title')
+            ->content([TextBlock::create()->setText('Text')]);
     }
 }
 
@@ -150,13 +197,13 @@ class TestNotificationWithToParam extends Notification
     /**
      * @param $notifiable
      *
-     * @return MicrosoftTeamsMessage
+     * @return MicrosoftTeamsAdaptiveCard
      */
-    public function toMicrosoftTeams($notifiable): MicrosoftTeamsMessage
+    public function toMicrosoftTeams($notifiable): MicrosoftTeamsAdaptiveCard
     {
-        return (new MicrosoftTeamsMessage())
-            ->title('Hello, MicrosoftTeams!')
-            ->content('This is my content.')
+        return (new MicrosoftTeamsAdaptiveCard())
+            ->title('Title')
+            ->content([TextBlock::create()->setText('Text')])
             ->to('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567');
     }
 }

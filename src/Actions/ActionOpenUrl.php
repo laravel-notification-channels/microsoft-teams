@@ -2,64 +2,96 @@
 
 namespace NotificationChannels\MicrosoftTeams\Actions;
 
-use BackedEnum;
-
-use NotificationChannels\MicrosoftTeams\Enums\ButtonStyle;
-use NotificationChannels\MicrosoftTeams\Enums\Mode;
-
 class ActionOpenUrl
 {
-    protected string $type = 'Action.OpenUrl';
+    /** @var string Property Type */
+    protected $type = 'Action.OpenUrl';
 
-    protected string $title;
+    /** @var string Title of the Action */
+    protected $title;
 
-    protected Mode $mode;
+    /** @var string $mode Mode of the Action. (Primary, Secondary) */
+    protected $mode;
 
-    protected ButtonStyle $style;
+    /** @var string $mode Style of the Action Button. (Positive, Destructive) */
+    protected $style;
 
-    protected string $url;
+    /** @var string $url URL the Action goes to. */
+    protected $url;
 
+    /**
+     * @return self
+     */
+    public static function create(): self
+    {
+        return new self();
+    }    
+
+    /**
+     * Set the title.
+     *
+     * @param string $title
+     * 
+     * @return ActionOpenUrl
+     */
     public function setTitle(string $title) : self
     {
         $this->title = $title;
         return $this;
     }
 
-    public function setMode(Mode $mode) : self
+    /**
+     * Set the mode.
+     *
+     * @param string $mode
+     * 
+     * @return ActionOpenUrl
+     */
+    public function setMode(string $mode) : self
     {
         $this->mode = $mode;
         return $this;
     }
 
-    public function setStyle(ButtonStyle $style) : self
+    /**
+     * Set the style.
+     *
+     * @param string $style
+     * 
+     * @return ActionOpenUrl
+     */
+    public function setStyle(string $style) : self
     {
         $this->style = $style;
         return $this;
     }
 
+    /**
+     * Set the url.
+     *
+     * @param string $url
+     * 
+     * @return ActionOpenUrl
+     */
     public function setUrl(string $url) : self
     {
         $this->url = $url;
         return $this;
     }
 
-    public static function create(): self
-    {
-        return new self();
-    }    
-
+    /**
+     * Returns Action properties as an array.
+     *
+     * @return array
+     */
     public function toArray() : array
     {
         $actionOpenUrl = [];
         $properties = get_object_vars($this);
         foreach ($properties as $propertyName => $propertyValue) {
-            
-            if ($propertyValue instanceof BackedEnum) {
-                $actionOpenUrl[$propertyName] = $propertyValue->value;
-                continue;
+            if (!is_null($propertyValue)) {
+                $actionOpenUrl[$propertyName] = $propertyValue;
             }
-
-            $actionOpenUrl[$propertyName] = $propertyValue;
         }
 
         return $actionOpenUrl;
