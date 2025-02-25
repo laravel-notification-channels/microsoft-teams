@@ -4,7 +4,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/microsoft-teams.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/microsoft-teams)
 
-This package makes it easy to send notifications using [Microsoft Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) with Laravel 5.5+, 6.x, 7.x, 8.x, 9.x, 10.x and 11.x
+This package makes it easy to send notifications using [Microsoft Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) with Laravel 5.5+, 6.x, 7.x, 8.x, 9.x, 10.x, 11.x and 12.x
 
 ```php
 return MicrosoftTeamsMessage::create()
@@ -129,29 +129,34 @@ Notification::route(MicrosoftTeamsChannel::class,null)
 
 
 ### Available Message methods
-
-- `to(string $webhookUrl)`: Recipient's webhook url.
-- `title(string $title)`: Title of the message.
-- `summary(string $summary)`: Summary of the message.
-- `type(string $type)`: Type which is used as theme color (any valid hex code or one of: primary|secondary|accent|error|info|success|warning).
-- `content(string $content)`: Content of the message (Markdown supported).
-- `button(string $text, string $url = '', array $params = [])`: Text and url of a button. Wrapper for an potential action.
-- `action(string $text, $type = 'OpenUri', array $params = [])`: Text and type for a potential action. Further params can be added depending on the action. For more infos about different types check out [this link](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actions).
-- `options(array $options, $sectionId = null)`: Add additional options to pass to the message payload object.
+| **Method** | **Description** |
+|------------|-----------------|
+| `to(string $webhookUrl)` | Recipient's webhook url |
+| `title(string $title)` | Title of the message |
+| `summary(string $summary)` | Summary of the message |
+| `type(string $type)` | Type which is used as theme color (any valid hex code or one of: primary|secondary|accent|error|info|success|warning) |
+| `content(string $content)` | Content of the message (Markdown supported) |
+| `button(string $text, string $url = '', array $params = [])` | Text and url of a button. Wrapper for an potential action |
+| `action(string $text, $type = 'OpenUri', array $params = [])` | Text and type for a potential action. Further params can be added depending on the action. For more infos about different types check out [this link](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#actions). |
+| `options(array $options, $sectionId = null)` | Add additional options to pass to the message payload object |
 
 #### Sections
 It is possible to define one or many sections inside a message card. The following methods can be used within a section
-- `addStartGroupToSection($sectionId = 'standard_section')`: Add a startGroup property which marks the start of a logical group of information.
-- `activity(string $activityImage = '', string $activityTitle = '', string $activitySubtitle = '', string $activityText = '', $sectionId = 'standard_section')`: Add an activity to a section.
-- `fact(string $name, string $value, $sectionId = 'standard_section')`: Add a fact to a section (Supports Markdown).
-- `image(string $imageUri, string $title = '', $sectionId = 'standard_section')`: Add an image to a section.
-- `heroImage(string $imageUri, string $title = '', $sectionId = 'standard_section')`: Add a hero image to a section.
+| **Method** | **Description** |
+|------------|-----------------|
+| `addStartGroupToSection($sectionId = 'standard_section')` | Add a startGroup property which marks the start of a logical group of information |
+| `activity(string $activityImage = '', string $activityTitle = '', string $activitySubtitle = '', string $activityText = '', $sectionId = 'standard_section')` | Add an activity to a section |
+| `fact(string $name, string $value, $sectionId = 'standard_section')` | Add a fact to a section (Supports Markdown) |
+| `image(string $imageUri, string $title = '', $sectionId = 'standard_section')` | Add an image to a section |
+| `heroImage(string $imageUri, string $title = '', $sectionId = 'standard_section')` | Add a hero image to a section |
 
 Additionally the title, content, button and action can be also added to a section through the optional `params` value:
-- `title(string $title, array $params = ['section' => 'my-section'])`: Title of the message and add it to `my-section`.
-- `content(string $content, array $params = ['section' => 'my-section'])`: Content of the message and add it to `my-section` (Markdown supported).
-- `button(string $text, string $url = '', array $params = ['section' => 'my-section'])`: Text and url of a button and add it to `my-section`.
-- `action(string $text, $type = 'OpenUri', array $params = ['section' => 'my-section'])`: Text and type of an potential action and add it to `my-section`.
+| **Method** | **Description** |
+|------------|-----------------|
+| `title(string $title, array $params = ['section' => 'my-section'])` | Title of the message and add it to `my-section` |
+| `content(string $content, array $params = ['section' => 'my-section'])` | Content of the message and add it to `my-section` (Markdown supported) |
+| `button(string $text, string $url = '', array $params = ['section' => 'my-section'])` | Text and url of a button and add it to `my-section` |
+| `action(string $text, $type = 'OpenUri', array $params = ['section' => 'my-section'])` | Text and type of an potential action and add it to `my-section` |
 
 ## Changelog
 
