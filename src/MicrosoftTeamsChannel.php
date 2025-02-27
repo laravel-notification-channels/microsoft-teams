@@ -31,20 +31,20 @@ class MicrosoftTeamsChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        $message = $notification->toMicrosoftTeams($notifiable);
+        $adaptiveCard = $notification->toMicrosoftTeams($notifiable);
 
-        if (! $message instanceof MicrosoftTeamsMessage) {
+        if (! $adaptiveCard instanceof MicrosoftTeamsAdaptiveCard) {
             return;
         }
 
         // if the recipient is not defined get it from the notifiable object
-        if ($message->toNotGiven()) {
+        if ($adaptiveCard->toNotGiven()) {
             $to = $notifiable->routeNotificationFor('microsoftTeams', $notification);
 
-            $message->to($to);
+            $adaptiveCard->to($to);
         }
 
-        $response = $this->microsoftTeams->send($message->getWebhookUrl(), $message->toArray());
+        $response = $this->microsoftTeams->send($adaptiveCard->getWebhookUrl(), $adaptiveCard->toArray());
 
         return $response;
     }
