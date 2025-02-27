@@ -70,22 +70,17 @@ class FactSet
      */
     public function toArray() : array
     {
-        $factSet = [];
-        $properties = get_object_vars($this);
-        foreach ($properties as $propertyName => $propertyValue) {
-
-            if($propertyName === 'facts') {
-                foreach($this->facts as $fact) {
-                    $factSet[$propertyName][] = $fact->toArray();                
-                }
-
-                continue;
-            }
-            if (!is_null($propertyValue)) {
-                $factSet[$propertyName] = $propertyValue;
-            }
+        $facts = [];
+        
+        foreach($this->facts as $fact) {
+            $facts[] = $fact->toArray();
         }
 
-        return $factSet;
+        return [
+            'type' => $this->type,
+            'spacing' => $this->spacing,
+            'facts' => $facts,
+            'seperator' => $this->separator
+        ];
     }
 }

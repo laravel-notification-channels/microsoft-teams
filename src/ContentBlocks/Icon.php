@@ -134,15 +134,16 @@ class Icon
      */
     public function toArray() : array
     {
-        $icon = [];
-        $properties = get_object_vars($this);
-        foreach ($properties as $propertyName => $propertyValue) {
-            if (!is_null($propertyValue)) {
-                $icon[$propertyName] = $propertyValue;
-            }
-        }
-
-        return $icon;
+        return [
+            'type' => $this->type,
+            'name' => $this->name,
+            'spacing' => $this->spacing,
+            'separator' => $this->separator,
+            'horizontalAlignment' => $this->horizontalAlignment,
+            'style' => $this->style,
+            'color' => $this->color,
+            'size' => $this->size
+        ];
     }
 
 }

@@ -214,14 +214,20 @@ class TextBlock
      */
     public function toArray() : array
     {
-        $textBlock = [];
-        $properties = get_object_vars($this);
-        foreach ($properties as $propertyName => $propertyValue) {
-            if (!is_null($propertyValue)) {
-                $textBlock[$propertyName] = $propertyValue;
-            }
-        }
-
-        return $textBlock;
+        return [
+            'type' => $this->type,
+            'text' => $this->text,
+            'spacing' => $this->spacing,
+            'separator' => $this->separator,
+            'horizontalAlignment' => $this->horizontalAlignment,
+            'maxLines' => $this->maxLines,
+            'style' => $this->style,
+            'fontType' => $this->fontType,
+            'size' => $this->size,
+            'weight' => $this->weight,
+            'isSubtle' => $this->isSubtle,
+            'color' => $this->color,
+            'wrap' => $this->wrap
+        ];
     }
 }

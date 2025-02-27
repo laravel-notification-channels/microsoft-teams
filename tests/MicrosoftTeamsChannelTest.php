@@ -58,7 +58,17 @@ class MicrosoftTeamsChannelTest extends TestCase
                             [
                                 'type' => 'TextBlock',
                                 'text' => 'Text',
-                                'wrap' => true
+                                'wrap' => true,
+                                'spacing' => null,
+                                'separator' => null,
+                                'horizontalAlignment' => null,
+                                'maxLines' => null,
+                                'style' => null,
+                                'fontType' => null,
+                                'size' => null,
+                                'weight' => null,
+                                'isSubtle' => null,
+                                'color' => null
                             ]
                         ],
                         'actions' => []
@@ -114,7 +124,17 @@ class MicrosoftTeamsChannelTest extends TestCase
                             [
                                 'type' => 'TextBlock',
                                 'text' => 'Text',
-                                'wrap' => true
+                                'wrap' => true,
+                                'spacing' => null,
+                                'separator' => null,
+                                'horizontalAlignment' => null,
+                                'maxLines' => null,
+                                'style' => null,
+                                'fontType' => null,
+                                'size' => null,
+                                'weight' => null,
+                                'isSubtle' => null,
+                                'color' => null
                             ]
                         ],
                         'actions' => []

@@ -86,14 +86,12 @@ class ActionOpenUrl
      */
     public function toArray() : array
     {
-        $actionOpenUrl = [];
-        $properties = get_object_vars($this);
-        foreach ($properties as $propertyName => $propertyValue) {
-            if (!is_null($propertyValue)) {
-                $actionOpenUrl[$propertyName] = $propertyValue;
-            }
-        }
-
-        return $actionOpenUrl;
+        return [
+            'type' => $this->type,
+            'title' => $this->title,
+            'mode' => $this->mode,
+            'style' => $this->style,
+            'url' => $this->url
+        ];
     }
 }

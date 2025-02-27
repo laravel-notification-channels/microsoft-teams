@@ -78,7 +78,17 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
                             [
                                 'type' => 'TextBlock',
                                 'text' => 'Text',
-                                'wrap' => true
+                                'wrap' => true,
+                                'spacing' => null,
+                                'separator' => null,
+                                'horizontalAlignment' => null,
+                                'maxLines' => null,
+                                'style' => null,
+                                'fontType' => null,
+                                'size' => null,
+                                'weight' => null,
+                                'isSubtle' => null,
+                                'color' => null
                             ]
                         ],
                         'actions' => []
@@ -138,11 +148,31 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
                                 'type' => 'TextBlock',
                                 'text' => 'Text',
                                 'wrap' => true,
+                                'spacing' => null,
+                                'separator' => null,
+                                'horizontalAlignment' => null,
+                                'maxLines' => null,
+                                'style' => null,
+                                'fontType' => null,
+                                'size' => null,
+                                'weight' => null,
+                                'isSubtle' => null,
+                                'color' => null
                             ],
                             [
                                 'type' => 'TextBlock',
                                 'text' => 'Text',
-                                'wrap' => true
+                                'wrap' => true,
+                                'spacing' => null,
+                                'separator' => null,
+                                'horizontalAlignment' => null,
+                                'maxLines' => null,
+                                'style' => null,
+                                'fontType' => null,
+                                'size' => null,
+                                'weight' => null,
+                                'isSubtle' => null,
+                                'color' => null
                             ]
                         ],
                         'actions' => []
@@ -176,10 +206,22 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
                             [
                                 'type' => 'Icon',
                                 'name' => 'Alert',
+                                'spacing' => null,
+                                'separator' => null,
+                                'horizontalAlignment' => null,
+                                'style' => null,
+                                'color' => null,
+                                'size' => null
                             ],
                             [
                                 'type' => 'Icon',
                                 'name' => 'Alert',
+                                'spacing' => null,
+                                'separator' => null,
+                                'horizontalAlignment' => null,
+                                'style' => null,
+                                'color' => null,
+                                'size' => null
                             ]
                         ],
                         'actions' => []
@@ -221,7 +263,9 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
                                         'title' => 'Fact',
                                         'value' => 'Value'
                                     ]  
-                                ]
+                                ],
+                                'spacing' => null,
+                                'seperator' => null
                             ],
                         ],
                         'actions' => []
@@ -259,12 +303,16 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
                             [
                                 'type' => 'Action.OpenUrl',
                                 'title' => 'Visit Website',
-                                'url' => 'https://foo.bar'
+                                'url' => 'https://foo.bar',
+                                'mode' => null,
+                                'style' => null
                             ],
                             [
                                 'type' => 'Action.OpenUrl',
                                 'title' => 'Visit Website2',
-                                'url' => 'https://foo.bar'
+                                'url' => 'https://foo.bar',
+                                'mode' => null,
+                                'style' => null
                             ]
                         ]
                     ]

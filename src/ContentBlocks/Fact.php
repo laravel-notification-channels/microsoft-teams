@@ -51,14 +51,9 @@ class Fact
      */
     public function toArray() : array
     {
-        $fact = [];
-        $properties = get_object_vars($this);
-        foreach ($properties as $propertyName => $propertyValue) {
-            if (!is_null($propertyValue)) {
-                $fact[$propertyName] = $propertyValue;
-            }
-        }
-
-        return $fact;
+        return [
+            'title' => $this->title,
+            'value' => $this->value
+        ];
     }
 }
