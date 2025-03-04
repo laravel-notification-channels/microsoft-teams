@@ -4,7 +4,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/microsoft-teams.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/microsoft-teams)
 
-This package makes it easy to send notifications using [Microsoft Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) with Laravel 5.5+, 6.x, 7.x, 8.x, 9.x, 10.x and 11.x
+This package makes it easy to send notifications using [Microsoft Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) with Laravel 5.5+, 6.x, 7.x, 8.x, 9.x, 10.x, 11.x and 12.x
 
 ```php
 return MicrosoftTeamsAdaptiveCard::create()
@@ -176,7 +176,7 @@ Notification::route(MicrosoftTeamsChannel::class,null)
 - `create()`: Static factory method to create a new instance of the MicrosoftTeamsAdaptiveCard.
 - `to(string $webhookUrl)`: Sets the recipient's webhook URL. Required for sending notifications.
 - `title(string $title)`: Sets the title of the adaptive card with appropriate text styling (heading style, bold weight, and large size).
-- `content(array $contentBlocks)`: Adds content blocks to the adaptive card body. Accepts an array of content block objects like TextBlock, FactSet, Image, etc.
+- `content(array $contentBlocks)`: Adds content blocks to the adaptive card body. Accepts an array of content block objects like TextBlock, FactSet, Icon, etc.
 - `actions(array $actions)`: Adds action buttons to the adaptive card. Accepts an array of action objects like ActionOpenUrl.
 - `getWebhookUrl()`: Returns the currently set webhook URL.
 - `toNotGiven()`: Checks if the webhook URL has been provided. Returns true if no webhook URL is set.
