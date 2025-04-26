@@ -114,7 +114,7 @@ class MicrosoftTeamsAdaptiveCard
         foreach ($contentBlocks as $contentBlock) {
             $this->payload['attachments'][0]['content']['body'][] = $contentBlock->toArray();
         }
-        
+
         return $this;
     }
 
@@ -130,7 +130,7 @@ class MicrosoftTeamsAdaptiveCard
         foreach ($actions as $action) {
             $this->payload['attachments'][0]['content']['actions'][] = $action->toArray();
         }
-    
+
         return $this;
     }
 

@@ -34,16 +34,16 @@ class Icon
     public static function create(): self
     {
         return new self();
-    }    
+    }
 
     /**
      * Set the name.
      *
      * @param string $name
-     * 
+     *
      * @return Icon
      */
-    public function setName(string $name) : self
+    public function setName(string $name): self
     {
         $this->name = $name;
         return $this;
@@ -53,10 +53,10 @@ class Icon
      * Set the color.
      *
      * @param string $color
-     * 
+     *
      * @return Icon
      */
-    public function setColor(string $color) : self
+    public function setColor(string $color): self
     {
         $this->color = $color;
         return $this;
@@ -66,10 +66,10 @@ class Icon
      * Set the spacing.
      *
      * @param string $spacing
-     * 
+     *
      * @return Icon
      */
-    public function setSpacing(string $spacing) : self
+    public function setSpacing(string $spacing): self
     {
         $this->spacing = $spacing;
         return $this;
@@ -79,10 +79,10 @@ class Icon
      * Set the seperator.
      *
      * @param bool $seperator
-     * 
+     *
      * @return Icon
      */
-    public function setSeparator(bool $separator) : self
+    public function setSeparator(bool $separator): self
     {
         $this->separator = $separator;
         return $this;
@@ -92,10 +92,10 @@ class Icon
      * Set the size.
      *
      * @param string $size
-     * 
+     *
      * @return Icon
      */
-    public function setSize(string $size) : self
+    public function setSize(string $size): self
     {
         $this->size = $size;
         return $this;
@@ -105,10 +105,10 @@ class Icon
      * Set the style.
      *
      * @param string $style
-     * 
+     *
      * @return Icon
      */
-    public function setStyle(string $style) : self
+    public function setStyle(string $style): self
     {
         $this->style = $style;
         return $this;
@@ -118,10 +118,10 @@ class Icon
      * Set the horizontal alignment.
      *
      * @param string $horizontalAlignment
-     * 
+     *
      * @return Icon
      */
-    public function setHorizontalAlignment(string $horizontalAlignment) : self
+    public function setHorizontalAlignment(string $horizontalAlignment): self
     {
         $this->horizontalAlignment = $horizontalAlignment;
         return $this;
@@ -132,7 +132,7 @@ class Icon
      *
      * @return array
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'type' => $this->type,
@@ -145,5 +145,4 @@ class Icon
             'size' => $this->size
         ];
     }
-
 }

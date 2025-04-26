@@ -25,16 +25,16 @@ class ActionOpenUrl
     public static function create(): self
     {
         return new self();
-    }    
+    }
 
     /**
      * Set the title.
      *
      * @param string $title
-     * 
+     *
      * @return ActionOpenUrl
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->title = $title;
         return $this;
@@ -44,10 +44,10 @@ class ActionOpenUrl
      * Set the mode.
      *
      * @param string $mode
-     * 
+     *
      * @return ActionOpenUrl
      */
-    public function setMode(string $mode) : self
+    public function setMode(string $mode): self
     {
         $this->mode = $mode;
         return $this;
@@ -57,10 +57,10 @@ class ActionOpenUrl
      * Set the style.
      *
      * @param string $style
-     * 
+     *
      * @return ActionOpenUrl
      */
-    public function setStyle(string $style) : self
+    public function setStyle(string $style): self
     {
         $this->style = $style;
         return $this;
@@ -70,10 +70,10 @@ class ActionOpenUrl
      * Set the url.
      *
      * @param string $url
-     * 
+     *
      * @return ActionOpenUrl
      */
-    public function setUrl(string $url) : self
+    public function setUrl(string $url): self
     {
         $this->url = $url;
         return $this;
@@ -84,7 +84,7 @@ class ActionOpenUrl
      *
      * @return array
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'type' => $this->type,

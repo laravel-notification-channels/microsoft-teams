@@ -262,7 +262,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
                                     [
                                         'title' => 'Fact',
                                         'value' => 'Value'
-                                    ]  
+                                    ]
                                 ],
                                 'spacing' => null,
                                 'seperator' => null
@@ -273,7 +273,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
                 ]
             ]
         ];
- 
+
         $card = new MicrosoftTeamsAdaptiveCard();
         $card->content([
             FactSet::create()->setFacts([
@@ -287,7 +287,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
 
 
     /** @test */
-    public function actions_can_be_set (): void
+    public function actions_can_be_set(): void
     {
         $expectedPayload = [
             'type' => 'message',
@@ -319,7 +319,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
                 ]
             ]
         ];
- 
+
         $card = new MicrosoftTeamsAdaptiveCard();
         $card->actions([
             ActionOpenUrl::create()->setTitle('Visit Website')->setUrl('https://foo.bar'),
