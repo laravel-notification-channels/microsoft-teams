@@ -80,7 +80,7 @@ class FactSet
             'type' => $this->type,
             'spacing' => $this->spacing,
             'facts' => $facts,
-            'seperator' => $this->separator
+            'separator' => $this->separator
         ];
     }
 }
