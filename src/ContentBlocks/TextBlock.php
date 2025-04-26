@@ -201,7 +201,7 @@ class TextBlock
      *
      * @return TextBlock
      */
-    public function setMaximumLInes(int $maxLines): self
+    public function setMaximumLines(int $maxLines): self
     {
         $this->maxLines = $maxLines;
         return $this;
