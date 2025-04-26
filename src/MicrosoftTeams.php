@@ -40,10 +40,7 @@ class MicrosoftTeams
         if (! $url) {
             throw CouldNotSendNotification::microsoftTeamsWebhookUrlMissing();
         }
-        // convert associative array to numeric array in sections (since ms is otherwise not acception the body structure)
-        if (isset($data['sections'])) {
-            $data['sections'] = array_values($data['sections']);
-        }
+
         try {
             $response = $this->httpClient->post($url, [
                 'json' => $data,

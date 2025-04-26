@@ -34,14 +34,14 @@ Since O365 Connectors are being deprecated, you must create a new incoming webho
 Once created, update your `.env` file with the new webhook URL:
 
 ```env
-MICROSOFT_TEAMS_NOTIFICATION_WEBHOOK_URL=https://your-new-webhook-url
+TEAMS_WEBHOOK_URL=https://your-new-webhook-url
 ```
 
 Update `config/services.php` to reference the new webhook:
 
 ```php
 'microsoft_teams' => [
-    'notification_webhook_url' => env('MICROSOFT_TEAMS_NOTIFICATION_WEBHOOK_URL'),
+    'webhook_url' => env('TEAMS_WEBHOOK_URL'),
 ]
 ```
 
@@ -54,7 +54,7 @@ return MicrosoftTeamsMessage::create()
             ->to(config('services.microsoft_teams.notification_webhook_url'))
             ->type('success')
             ->title('Subscription Created')
-            ->content('Yey, you got a **new subscription**. Maybe you want to contact him if he needs any support?')
+            ->content('Yey, you got a **new subscription**.')
             ->button('Check User', 'https://foo.bar/users/123');
 ```
 
@@ -66,7 +66,7 @@ return MicrosoftTeamsAdaptiveCard::create()
     ->title('Subscription Created')
     ->content([
         TextBlock::create()
-            ->setText('Yey, you got a **new subscription**. Maybe you want to contact him if he needs any support?')
+            ->setText('Yey, you got a **new subscription**.')
             ->setWeight('Bolder')
             ->setSize('Large'),
     ])

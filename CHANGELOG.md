@@ -2,7 +2,11 @@
 
 All notable changes to `microsoft-teams` will be documented in this file
 
-Adaptive Cards
+## 2.0.0
+
+-   Transition to Microsoft Adaptive Cards
+-   Set min supported PHP version to >=8.1
+-   Remove deprecated code
 
 ## 1.1.4 - 2023-01-25
 

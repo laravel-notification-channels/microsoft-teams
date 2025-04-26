@@ -6,13 +6,15 @@
 
 This package makes it easy to send notifications using [Microsoft Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) with Laravel 5.5+, 6.x, 7.x, 8.x, 9.x, 10.x, 11.x and 12.x
 
+**Since v2 we transitioned from traditional message cards to [MS Adaptive Cards](https://adaptivecards.io). In case you need to upgrade please check out our [Migration Guide](/UPGRADE.md).**
+
 ```php
 return MicrosoftTeamsAdaptiveCard::create()
     ->to(config('services.microsoft_teams.webhook_url'))
     ->title('Subscription Created')
     ->content([
         TextBlock::create()
-            ->setText('Yey, you got a **new subscription**. Maybe you want to contact him if he needs any support?')
+            ->setText('Yey, you got a **new subscription**.')
             ->setFontType('Monospace')
             ->setWeight('Bolder')
             ->setSize('ExtraLarge')
@@ -32,7 +34,7 @@ return MicrosoftTeamsAdaptiveCard::create()
             ->setMode('Primary')
             ->setStyle('Positive')
             ->setTitle('Contact Customer')
-            ->setUrl("https://foo.bar"),
+            ->setUrl("https://www.tournamize.com"),
     ]);
 ```
 
@@ -126,7 +128,7 @@ class SubscriptionCreated extends Notification
             ->title('Subscription Created')
             ->content([
                 TextBlock::create()
-                    ->setText('Yey, you got a **new subscription**. Maybe you want to contact him if he needs any support?')
+                    ->setText('Yey, you got a **new subscription**.')
                     ->setFontType('Monospace')
                     ->setWeight('Bolder')
                     ->setSize('ExtraLarge')
@@ -146,7 +148,7 @@ class SubscriptionCreated extends Notification
                     ->setMode('Primary')
                     ->setStyle('Positive')
                     ->setTitle('Contact Customer')
-                    ->setUrl("https://foo.bar"),
+                    ->setUrl("https://www.tournamize.com"),
             ]);
     }
 }
