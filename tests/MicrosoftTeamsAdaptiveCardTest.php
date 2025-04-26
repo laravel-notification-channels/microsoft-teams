@@ -265,7 +265,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
                                     ]
                                 ],
                                 'spacing' => null,
-                                'seperator' => null
+                                'separator' => null
                             ],
                         ],
                         'actions' => []

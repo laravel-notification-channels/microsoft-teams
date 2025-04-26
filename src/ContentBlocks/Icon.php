@@ -76,9 +76,9 @@ class Icon
     }
 
     /**
-     * Set the seperator.
+     * Set the separator.
      *
-     * @param bool $seperator
+     * @param bool $separator
      *
      * @return Icon
      */
