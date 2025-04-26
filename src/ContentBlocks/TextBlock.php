@@ -36,7 +36,7 @@ class TextBlock
 
     /** @var bool TextBlock isSubtle. */
     protected $isSubtle;
-    
+
     /** @var string TextBlock Text Color.(Default,Dark,Light,Accent,Good,Warning,Attention) */
     protected $color;
 
@@ -49,16 +49,16 @@ class TextBlock
     public static function create(): self
     {
         return new self();
-    }   
+    }
 
     /**
      * Set the text.
      *
      * @param string $text
-     * 
+     *
      * @return TextBlock
      */
-    public function setText(string $text) : self
+    public function setText(string $text): self
     {
         $this->text = $text;
         return $this;
@@ -68,10 +68,10 @@ class TextBlock
      * Set the color.
      *
      * @param string $color
-     * 
+     *
      * @return TextBlock
      */
-    public function setColor(string $color) : self
+    public function setColor(string $color): self
     {
         $this->color = $color;
         return $this;
@@ -81,10 +81,10 @@ class TextBlock
      * Set the wrap.
      *
      * @param bool $wrap
-     * 
+     *
      * @return TextBlock
      */
-    public function setWrap(bool $wrap) : self
+    public function setWrap(bool $wrap): self
     {
         $this->wrap = $wrap;
         return $this;
@@ -94,10 +94,10 @@ class TextBlock
      * Set the spacing.
      *
      * @param string $spacing
-     * 
+     *
      * @return TextBlock
      */
-    public function setSpacing(string $spacing) : self
+    public function setSpacing(string $spacing): self
     {
         $this->spacing = $spacing;
         return $this;
@@ -107,10 +107,10 @@ class TextBlock
      * Set the separator.
      *
      * @param bool $separator
-     * 
+     *
      * @return TextBlock
      */
-    public function setSeparator(bool $separator) : self
+    public function setSeparator(bool $separator): self
     {
         $this->separator = $separator;
         return $this;
@@ -120,10 +120,10 @@ class TextBlock
      * Set the font type.
      *
      * @param string $fontType
-     * 
+     *
      * @return TextBlock
      */
-    public function setFontType(string $fontType) : self
+    public function setFontType(string $fontType): self
     {
         $this->fontType = $fontType;
         return $this;
@@ -133,10 +133,10 @@ class TextBlock
      * Set the font size.
      *
      * @param string $fontSize
-     * 
+     *
      * @return TextBlock
      */
-    public function setSize(string $fontSize) : self
+    public function setSize(string $fontSize): self
     {
         $this->size = $fontSize;
         return $this;
@@ -146,10 +146,10 @@ class TextBlock
      * Set the weight.
      *
      * @param string $weight
-     * 
+     *
      * @return TextBlock
      */
-    public function setWeight(string $weight) : self
+    public function setWeight(string $weight): self
     {
         $this->weight = $weight;
         return $this;
@@ -159,10 +159,10 @@ class TextBlock
      * Set the is subtle.
      *
      * @param bool $isSubtle
-     * 
+     *
      * @return TextBlock
      */
-    public function setIsSubtle(bool $isSubtle) : self
+    public function setIsSubtle(bool $isSubtle): self
     {
         $this->isSubtle = $isSubtle;
         return $this;
@@ -172,10 +172,10 @@ class TextBlock
      * Set the style.
      *
      * @param string $style
-     * 
+     *
      * @return TextBlock
      */
-    public function setStyle(string $style) : self
+    public function setStyle(string $style): self
     {
         $this->style = $style;
         return $this;
@@ -185,10 +185,10 @@ class TextBlock
      * Set the horizontal alignment.
      *
      * @param string $horizontalAlignment
-     * 
+     *
      * @return TextBlock
      */
-    public function setHorizontalAlignment(string $horizontalAlignment) : self
+    public function setHorizontalAlignment(string $horizontalAlignment): self
     {
         $this->horizontalAlignment = $horizontalAlignment;
         return $this;
@@ -198,21 +198,21 @@ class TextBlock
      * Set the maximum lines.
      *
      * @param int $maxLines
-     * 
+     *
      * @return TextBlock
      */
-    public function setMaximumLInes(int $maxLines) : self
+    public function setMaximumLInes(int $maxLines): self
     {
         $this->maxLines = $maxLines;
         return $this;
     }
- 
+
     /**
      * Returns TextBlock properties as an array.
      *
      * @return array
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'type' => $this->type,

@@ -16,16 +16,16 @@ class Fact
     public static function create(): self
     {
         return new self();
-    }    
+    }
 
     /**
      * Set the title.
      *
      * @param string $title
-     * 
+     *
      * @return Fact
      */
-    public function setTitle(string $title) : self
+    public function setTitle(string $title): self
     {
         $this->title = $title;
         return $this;
@@ -35,10 +35,10 @@ class Fact
      * Set the value.
      *
      * @param string $value
-     * 
+     *
      * @return Fact
      */
-    public function setValue(string $value) : self
+    public function setValue(string $value): self
     {
         $this->value = $value;
         return $this;
@@ -49,7 +49,7 @@ class Fact
      *
      * @return array
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'title' => $this->title,

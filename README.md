@@ -35,32 +35,31 @@ return MicrosoftTeamsAdaptiveCard::create()
             ->setUrl("https://foo.bar"),
     ]);
 ```
+
 ## Contents
 
-- [Microsoft Teams Notifications Channel for Laravel](#microsoft-teams-notifications-channel-for-laravel)
-  - [Contents](#contents)
-  - [Installation](#installation)
-    - [Setting up the Connector](#setting-up-the-connector)
-    - [Setting up the MicrosoftTeams service](#setting-up-the-microsoftteams-service)
-  - [Usage](#usage)
-    - [On-Demand Notification Usage](#on-demand-notification-usage)
-    - [Available Adaptive Card methods](#available-adaptive-cards-methods)
-    - [Content Block Types](#content-block-types)
-    - [Action Types](#action-types)
-     
-  - [Changelog](#changelog)
-  - [Testing](#testing)
-  - [Security](#security)
-  - [Contributing](#contributing)
-  - [Credits](#credits)
-  - [License](#license)
-
+-   [Microsoft Teams Notifications Channel for Laravel](#microsoft-teams-notifications-channel-for-laravel)
+    -   [Contents](#contents)
+    -   [Installation](#installation)
+        -   [Setting up the Connector](#setting-up-the-connector)
+        -   [Setting up the MicrosoftTeams service](#setting-up-the-microsoftteams-service)
+    -   [Usage](#usage)
+        -   [On-Demand Notification Usage](#on-demand-notification-usage)
+        -   [Available Adaptive Card methods](#available-adaptive-cards-methods)
+        -   [Content Block Types](#content-block-types)
+        -   [Action Types](#action-types)
+    -   [Changelog](#changelog)
+    -   [Testing](#testing)
+    -   [Security](#security)
+    -   [Contributing](#contributing)
+    -   [Credits](#credits)
+    -   [License](#license)
 
 ## Installation
 
 You can install the package via composer:
 
-``` bash
+```bash
 composer require laravel-notification-channels/microsoft-teams
 ```
 
@@ -103,6 +102,7 @@ You can also add multiple webhooks if you have multiple teams or channels, it's 
 ],
 ...
 ```
+
 ## Usage
 
 Now you can use the channel in your `via()` method inside the notification:
@@ -163,8 +163,7 @@ public function routeNotificationForMicrosoftTeams(Notification $notification)
 
 ### On-Demand Notification Usage
 
-
-To use on demand notifications you can use the `route` method on the Notification facade. 
+To use on demand notifications you can use the `route` method on the Notification facade.
 
 ```php
 Notification::route(MicrosoftTeamsChannel::class,null)
@@ -173,70 +172,70 @@ Notification::route(MicrosoftTeamsChannel::class,null)
 
 ### Available Adaptive Card methods
 
-- `create()`: Static factory method to create a new instance of the MicrosoftTeamsAdaptiveCard.
-- `to(string $webhookUrl)`: Sets the recipient's webhook URL. Required for sending notifications.
-- `title(string $title)`: Sets the title of the adaptive card with appropriate text styling (heading style, bold weight, and large size).
-- `content(array $contentBlocks)`: Adds content blocks to the adaptive card body. Accepts an array of content block objects like TextBlock, FactSet, Icon, etc.
-- `actions(array $actions)`: Adds action buttons to the adaptive card. Accepts an array of action objects like ActionOpenUrl.
-- `getWebhookUrl()`: Returns the currently set webhook URL.
-- `toNotGiven()`: Checks if the webhook URL has been provided. Returns true if no webhook URL is set.
-- `toArray()`: Returns the complete payload as an associative array.
+-   `create()`: Static factory method to create a new instance of the MicrosoftTeamsAdaptiveCard.
+-   `to(string $webhookUrl)`: Sets the recipient's webhook URL. Required for sending notifications.
+-   `title(string $title)`: Sets the title of the adaptive card with appropriate text styling (heading style, bold weight, and large size).
+-   `content(array $contentBlocks)`: Adds content blocks to the adaptive card body. Accepts an array of content block objects like TextBlock, FactSet, Icon, etc.
+-   `actions(array $actions)`: Adds action buttons to the adaptive card. Accepts an array of action objects like ActionOpenUrl.
+-   `getWebhookUrl()`: Returns the currently set webhook URL.
+-   `toNotGiven()`: Checks if the webhook URL has been provided. Returns true if no webhook URL is set.
+-   `toArray()`: Returns the complete payload as an associative array.
 
 ### Content Block Types
+
 You can use various content block types in the content() method:
 
 #### `TextBlock::create()`: Creates a text block with options for:
 
-- `setText(string $text)`: Sets the text content (supports markdown formatting)
-- `setFontType(string $fontType)`: Sets the font type (e.g., 'Default', 'Monospace')
-- `setWeight(string $weight)`: Sets text weight (e.g., 'Lighter', 'Default', 'Bolder')
-- `setSize(string $size)`: Sets text size (e.g., 'Small', 'Default', 'Medium', 'Large', 'ExtraLarge')
-- `setSpacing(string $spacing)`: Sets spacing around the element (e.g., 'None', 'Small', 'Default', 'Medium', 'Large', 'ExtraLarge', 'Padding')
-- `setStyle(string $style)`: Sets text style (e.g., 'Default', 'ColumnHeader', 'Heading')
-- `setHorizontalAlignment(string $alignment)`: Sets text alignment (e.g., 'Left', 'Center', 'Right')
-- `setSeparator(bool $separator)`: Adds a separator line above the element when true
-- `setWrap(bool $wrap)`: Sets whether text should wrap or not
-- `setColor(string $color)`: Sets text color (e.g., 'Default', 'Dark', 'Light', 'Accent', 'Good', 'Warning', 'Attention')
-- `setIsSubtle(bool $isSubtle)`: Sets whether text should be subtle or not
-- `setMaximumLines(int $maxLines)`: Sets the maximum number of lines for the text block
-- `toArray()`: Returns the TextBlock properties as an array
-
+-   `setText(string $text)`: Sets the text content (supports markdown formatting)
+-   `setFontType(string $fontType)`: Sets the font type (e.g., 'Default', 'Monospace')
+-   `setWeight(string $weight)`: Sets text weight (e.g., 'Lighter', 'Default', 'Bolder')
+-   `setSize(string $size)`: Sets text size (e.g., 'Small', 'Default', 'Medium', 'Large', 'ExtraLarge')
+-   `setSpacing(string $spacing)`: Sets spacing around the element (e.g., 'None', 'Small', 'Default', 'Medium', 'Large', 'ExtraLarge', 'Padding')
+-   `setStyle(string $style)`: Sets text style (e.g., 'Default', 'ColumnHeader', 'Heading')
+-   `setHorizontalAlignment(string $alignment)`: Sets text alignment (e.g., 'Left', 'Center', 'Right')
+-   `setSeparator(bool $separator)`: Adds a separator line above the element when true
+-   `setWrap(bool $wrap)`: Sets whether text should wrap or not
+-   `setColor(string $color)`: Sets text color (e.g., 'Default', 'Dark', 'Light', 'Accent', 'Good', 'Warning', 'Attention')
+-   `setIsSubtle(bool $isSubtle)`: Sets whether text should be subtle or not
+-   `setMaximumLines(int $maxLines)`: Sets the maximum number of lines for the text block
+-   `toArray()`: Returns the TextBlock properties as an array
 
 #### `Icon::create()`: Creates an icon with options for:
 
-- `setName(string $name)`: Sets the name of the icon
-- `setColor(string $color)`: Sets icon color (e.g., 'Default', 'Dark', 'Light', 'Accent', 'Good', 'Warning', 'Attention')
-- `setSpacing(string $spacing)`: Sets spacing around the icon (e.g., 'None', 'Small', 'Default', 'Medium', 'Large', 'ExtraLarge', 'Padding')
-- `setSeparator(bool $separator)`: Adds a separator line above the element when true
-- `setSize(string $size)`: Sets icon size (e.g., 'xxSmall', 'xSmall', 'Small', 'Standard', 'Medium', 'Large', 'xLarge', 'xxLarge')
-- `setStyle(string $style)`: Sets icon style (e.g., 'Regular', 'Filled')
-- `setHorizontalAlignment(string $alignment)`: Sets icon alignment (e.g., 'Left', 'Center', 'Right')
-- `toArray()`: Returns the Icon properties as an array
+-   `setName(string $name)`: Sets the name of the icon
+-   `setColor(string $color)`: Sets icon color (e.g., 'Default', 'Dark', 'Light', 'Accent', 'Good', 'Warning', 'Attention')
+-   `setSpacing(string $spacing)`: Sets spacing around the icon (e.g., 'None', 'Small', 'Default', 'Medium', 'Large', 'ExtraLarge', 'Padding')
+-   `setSeparator(bool $separator)`: Adds a separator line above the element when true
+-   `setSize(string $size)`: Sets icon size (e.g., 'xxSmall', 'xSmall', 'Small', 'Standard', 'Medium', 'Large', 'xLarge', 'xxLarge')
+-   `setStyle(string $style)`: Sets icon style (e.g., 'Regular', 'Filled')
+-   `setHorizontalAlignment(string $alignment)`: Sets icon alignment (e.g., 'Left', 'Center', 'Right')
+-   `toArray()`: Returns the Icon properties as an array
 
 #### `FactSet::create()`: Creates a set of facts with options for:
 
-- `setFacts(array $facts)`: Sets an array of Fact objects
-- `setSpacing(string $spacing)`: Sets spacing around the element (e.g., 'None', 'Small', 'Default', 'Medium', 'Large', 'ExtraLarge', 'Padding')
-- `setSeparator(bool $separator)`: Adds a separator line above the element when true
-- `toArray()`: Returns the FactSet properties as an array
-
+-   `setFacts(array $facts)`: Sets an array of Fact objects
+-   `setSpacing(string $spacing)`: Sets spacing around the element (e.g., 'None', 'Small', 'Default', 'Medium', 'Large', 'ExtraLarge', 'Padding')
+-   `setSeparator(bool $separator)`: Adds a separator line above the element when true
+-   `toArray()`: Returns the FactSet properties as an array
 
 #### `Fact::create()`: Creates a single fact (key-value pair) with methods:
 
-- `setTitle(string $title)`: Sets the fact's title/key
-- `setValue(string $value)`: Sets the fact's value
-- `toArray()`: Returns the Fact properties as an array
+-   `setTitle(string $title)`: Sets the fact's title/key
+-   `setValue(string $value)`: Sets the fact's value
+-   `toArray()`: Returns the Fact properties as an array
 
 ### Action Types
+
 You can use various action types in the actions() method:
 
 #### `ActionOpenUrl::create()`: Creates a button that opens a URL with options for:
 
-- `setTitle(string $title)`: Sets the button text
-- `setUrl(string $url)`: Sets the URL to open when clicked
-- `setStyle(string $style)`: Sets button style (e.g., 'Default', 'Positive', 'Destructive')
-- `setMode(string $mode)`: Sets the interaction mode (e.g., 'Primary', 'Secondary')
-- `toArray()`: Returns the ActionOpenUrl properties as an array
+-   `setTitle(string $title)`: Sets the button text
+-   `setUrl(string $url)`: Sets the URL to open when clicked
+-   `setStyle(string $style)`: Sets button style (e.g., 'Default', 'Positive', 'Destructive')
+-   `setMode(string $mode)`: Sets the interaction mode (e.g., 'Primary', 'Secondary')
+-   `toArray()`: Returns the ActionOpenUrl properties as an array
 
 ## Changelog
 
@@ -244,7 +243,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 
@@ -258,8 +257,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [Tobias Madner](https://github.com/Tob0t)
-- [All Contributors](../../contributors)
+-   [Tobias Madner](https://github.com/Tob0t)
+-   [All Contributors](../../contributors)
 
 ## License
 
