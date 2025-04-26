@@ -2,6 +2,8 @@
 
 All notable changes to `microsoft-teams` will be documented in this file
 
+Adaptive Cards 
+
 ## 1.1.4 - 2023-01-25
 Update Readme to support Laravel 10.x
 
