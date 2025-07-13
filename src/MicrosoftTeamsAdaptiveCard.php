@@ -83,6 +83,18 @@ class MicrosoftTeamsAdaptiveCard
     }
 
     /**
+     * Sets the card to take the full width
+     *
+     * @return MicrosoftTeamsAdaptiveCard $this
+     */
+    public function fullWidth(): self
+    {
+        $this->payload['attachments'][0]['content']['msteams']['width'] = 'Full';
+
+        return $this;
+    }
+
+    /**
      * Get webhook url.
      *
      * @return string $webhookUrl

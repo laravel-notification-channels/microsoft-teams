@@ -328,4 +328,17 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
 
         $this->assertEquals($expectedPayload, $card->toArray());
     }
+
+    /** @test */
+    public function full_width_can_be_set(): void
+    {
+        $card = new MicrosoftTeamsAdaptiveCard();
+
+        $card->fullWidth();
+
+        $payload = $card->toArray();
+        $cardWidth = $payload['attachments'][0]['content']['msteams']['width'];
+
+        $this->assertEquals('Full', $cardWidth);
+    }
 }
