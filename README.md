@@ -177,6 +177,7 @@ Notification::route(MicrosoftTeamsChannel::class,null)
 -   `create()`: Static factory method to create a new instance of the MicrosoftTeamsAdaptiveCard.
 -   `to(string $webhookUrl)`: Sets the recipient's webhook URL. Required for sending notifications.
 -   `title(string $title)`: Sets the title of the adaptive card with appropriate text styling (heading style, bold weight, and large size).
+-   `fullWidth()`: Sets the adaptive card to take up the full width of the Teams channel or chat instead of the default width.
 -   `content(array $contentBlocks)`: Adds content blocks to the adaptive card body. Accepts an array of content block objects like TextBlock, FactSet, Icon, etc.
 -   `actions(array $actions)`: Adds action buttons to the adaptive card. Accepts an array of action objects like ActionOpenUrl.
 -   `getWebhookUrl()`: Returns the currently set webhook URL.
