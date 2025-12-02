@@ -240,6 +240,10 @@ You can use various action types in the actions() method:
 -   `setMode(string $mode)`: Sets the interaction mode (e.g., 'Primary', 'Secondary')
 -   `toArray()`: Returns the ActionOpenUrl properties as an array
 
+## Support This Project
+
+This library was built in my free time out of passion for the community. If you find it useful, please consider [sponsoring me](https://github.com/sponsors/Tob0t) to help maintain and improve the project. Your support is greatly appreciated! Thank you! ❤️
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
