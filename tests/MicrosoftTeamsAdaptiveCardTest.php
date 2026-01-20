@@ -24,6 +24,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
             'attachments' => [
                 [
                     'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    "contentUrl" => null,
                     'content' => [
                         '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
@@ -59,6 +60,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
             'attachments' => [
                 [
                     'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    "contentUrl" => null,
                     'content' => [
                         '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
@@ -132,6 +134,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
             'attachments' => [
                 [
                     'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    "contentUrl" => null,
                     'content' => [
                         '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
@@ -190,6 +193,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
             'attachments' => [
                 [
                     'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    "contentUrl" => null,
                     'content' => [
                         '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
@@ -238,6 +242,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
             'attachments' => [
                 [
                     'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    "contentUrl" => null,
                     'content' => [
                         '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
@@ -284,6 +289,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
             'attachments' => [
                 [
                     'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    "contentUrl" => null,
                     'content' => [
                         '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
