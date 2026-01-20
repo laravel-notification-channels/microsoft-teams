@@ -17,8 +17,7 @@ use PHPUnit\Framework\TestCase;
 class MicrosoftTeamsAdaptiveCardTest extends TestCase
 {
 
-    /** @test */
-    public function initial_payload_is_created_when_constructed(): void
+    public function test_initial_payload_is_created_when_constructed(): void
     {
         $payload = [
             'type' => 'message',
@@ -40,8 +39,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
         $this->assertEquals($payload, $card->toArray());
     }
 
-    /** @test */
-    public function title_can_be_set(): void
+    public function test_title_can_be_set(): void
     {
         $card = new MicrosoftTeamsAdaptiveCard();
         $card->title('Title');
@@ -54,8 +52,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
         $this->assertEquals('TextBlock', $titleTextBlock['type']);
     }
 
-    /** @test */
-    public function it_can_return_the_payload_as_an_array(): void
+    public function test_it_can_return_the_payload_as_an_array(): void
     {
         $expectedPayload = [
             'type' => 'message',
@@ -106,24 +103,21 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
         $this->assertEquals($expectedPayload, $card->toArray());
     }
 
-    /** @test */
-    public function the_recipients_webhook_url_can_be_set(): void
+    public function test_the_recipients_webhook_url_can_be_set(): void
     {
         $card = new MicrosoftTeamsAdaptiveCard();
         $card->to('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567');
         $this->assertEquals('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567', $card->getWebhookUrl());
     }
 
-    /** @test */
-    public function it_throws_an_exception_if_the_recipients_webhook_url_is_an_empty_string(): void
+    public function test_it_throws_an_exception_if_the_recipients_webhook_url_is_an_empty_string(): void
     {
         $card = new MicrosoftTeamsAdaptiveCard();
         $this->expectException(CouldNotSendNotification::class);
         $card->to('');
     }
 
-    /** @test */
-    public function it_can_show_the_webhook_url(): void
+    public function test_it_can_show_the_webhook_url(): void
     {
         $card = new MicrosoftTeamsAdaptiveCard();
 
@@ -131,8 +125,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
         $this->assertEquals('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567', $card->getWebhookUrl());
     }
 
-    /** @test */
-    public function text_blocks_can_be_set_in_content(): void
+    public function test_text_blocks_can_be_set_in_content(): void
     {
         $expectedPayload = [
             'type' => 'message',
@@ -190,8 +183,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
         $this->assertEquals($expectedPayload, $card->toArray());
     }
 
-    /** @test */
-    public function icons_can_be_set_in_content(): void
+    public function test_icons_can_be_set_in_content(): void
     {
         $expectedPayload = [
             'type' => 'message',
@@ -239,8 +231,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
         $this->assertEquals($expectedPayload, $card->toArray());
     }
 
-    /** @test */
-    public function factsets_can_be_set_in_content(): void
+    public function test_factsets_can_be_set_in_content(): void
     {
         $expectedPayload = [
             'type' => 'message',
@@ -286,8 +277,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
     }
 
 
-    /** @test */
-    public function actions_can_be_set(): void
+    public function test_actions_can_be_set(): void
     {
         $expectedPayload = [
             'type' => 'message',
@@ -329,8 +319,7 @@ class MicrosoftTeamsAdaptiveCardTest extends TestCase
         $this->assertEquals($expectedPayload, $card->toArray());
     }
 
-    /** @test */
-    public function full_width_can_be_set(): void
+    public function test_full_width_can_be_set(): void
     {
         $card = new MicrosoftTeamsAdaptiveCard();
 

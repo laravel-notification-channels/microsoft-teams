@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\MicrosoftTeams\Tests;
+namespace NotificationChannels\MicrosoftTeams\Test;
 
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notifiable;
@@ -34,8 +34,7 @@ class MicrosoftTeamsChannelTest extends TestCase
         parent::tearDown();
     }
 
-    /** @test */
-    public function it_can_send_a_notification()
+    public function test_it_can_send_a_notification()
     {
         $payload = [
             'type' => 'message',
@@ -91,8 +90,7 @@ class MicrosoftTeamsChannelTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    /** @test */
-    public function it_does_not_send_a_notification_if_the_notifiable_does_not_provide_a_microsoft_teams_channel()
+    public function test_it_does_not_send_a_notification_if_the_notifiable_does_not_provide_a_microsoft_teams_channel()
     {
         $this->expectException(CouldNotSendNotification::class);
 
@@ -100,8 +98,7 @@ class MicrosoftTeamsChannelTest extends TestCase
         $channel->send(new TestNotifiableWithoutRoute(), new TestNotificationNoWebhookUrl());
     }
 
-    /** @test */
-    public function it_does_send_a_notification_if_the_notifiable_does_not_provide_a_microsoft_teams_channel_but_the_to_param_is_set()
+    public function test_it_does_send_a_notification_if_the_notifiable_does_not_provide_a_microsoft_teams_channel_but_the_to_param_is_set()
     {
         $payload = [
             'type' => 'message',
