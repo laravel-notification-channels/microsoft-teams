@@ -18,7 +18,7 @@ class MicrosoftTeamsServiceProvider extends ServiceProvider
 
         $this->app->when(MicrosoftTeamsChannel::class)
             ->needs(MicrosoftTeams::class)
-            ->give(static function () {
+            ->give(function () {
                 return new MicrosoftTeams(
                     new HttpClient
                 );
@@ -30,7 +30,7 @@ class MicrosoftTeamsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Notification::extend('microsoftTeams', static function (Container $app) {
+        Notification::extend('microsoftTeams', function (Container $app) {
             return $app->make(MicrosoftTeamsChannel::class);
         });
     }
