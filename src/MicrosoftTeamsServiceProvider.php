@@ -20,7 +20,7 @@ class MicrosoftTeamsServiceProvider extends ServiceProvider
             ->needs(MicrosoftTeams::class)
             ->give(static function () {
                 return new MicrosoftTeams(
-                    new HttpClient()
+                    new HttpClient
                 );
             });
     }

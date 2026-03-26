@@ -3,6 +3,7 @@
 namespace NotificationChannels\MicrosoftTeams;
 
 use Illuminate\Notifications\Notification;
+use Psr\Http\Message\ResponseInterface;
 
 class MicrosoftTeamsChannel
 {
@@ -13,8 +14,6 @@ class MicrosoftTeamsChannel
 
     /**
      * Channel constructor.
-     *
-     * @param MicrosoftTeams $microsoftTeams
      */
     public function __construct(MicrosoftTeams $microsoftTeams)
     {
@@ -24,10 +23,8 @@ class MicrosoftTeamsChannel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param Notification $notification
-     *
-     * @return \Psr\Http\Message\ResponseInterface|null
+     * @param  mixed  $notifiable
+     * @return ResponseInterface|null
      */
     public function send($notifiable, Notification $notification)
     {
