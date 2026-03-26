@@ -1,7 +1,5 @@
 <?php
 
-namespace NotificationChannels\MicrosoftTeams\Test;
-
 use NotificationChannels\MicrosoftTeams\Actions\ActionOpenUrl;
 use NotificationChannels\MicrosoftTeams\ContentBlocks\Fact;
 use NotificationChannels\MicrosoftTeams\ContentBlocks\FactSet;
@@ -9,331 +7,310 @@ use NotificationChannels\MicrosoftTeams\ContentBlocks\Icon;
 use NotificationChannels\MicrosoftTeams\ContentBlocks\TextBlock;
 use NotificationChannels\MicrosoftTeams\Exceptions\CouldNotSendNotification;
 use NotificationChannels\MicrosoftTeams\MicrosoftTeamsAdaptiveCard;
-use PHPUnit\Framework\TestCase;
 
-/**
- * Class MicrosoftTeamsMessageTest.
- */
-class MicrosoftTeamsAdaptiveCardTest extends TestCase
-{
+it('creates the initial payload when constructed', function () {
+    $payload = [
+        'type' => 'message',
+        'attachments' => [
+            [
+                'contentType' => 'application/vnd.microsoft.card.adaptive',
+                'contentUrl' => null,
+                'content' => [
+                    '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
+                    'type' => 'AdaptiveCard',
+                    'version' => '1.5',
+                    'body' => [],
+                    'actions' => [],
+                ],
+            ],
+        ],
+    ];
 
-    public function test_initial_payload_is_created_when_constructed(): void
-    {
-        $payload = [
-            'type' => 'message',
-            'attachments' => [
-                [
-                    'contentType' => 'application/vnd.microsoft.card.adaptive',
-                    "contentUrl" => null,
-                    'content' => [
-                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
-                        'type' => 'AdaptiveCard',
-                        'version' => '1.5',
-                        'body' => [],
-                        'actions' => []
-                    ]
-                ]
-            ]
-        ];
+    $card = new MicrosoftTeamsAdaptiveCard;
 
-        $card = new MicrosoftTeamsAdaptiveCard();
-        $this->assertEquals($payload, $card->toArray());
-    }
+    expect($card->toArray())->toEqual($payload);
+});
 
-    public function test_title_can_be_set(): void
-    {
-        $card = new MicrosoftTeamsAdaptiveCard();
-        $card->title('Title');
+it('can set a title', function () {
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->title('Title');
 
-        $payload = $card->toArray();
+    $payload = $card->toArray();
+    $titleTextBlock = $payload['attachments'][0]['content']['body'][0];
 
-        $titleTextBlock = $payload['attachments'][0]['content']['body'][0];
+    expect($titleTextBlock['text'])->toEqual('Title')
+        ->and($titleTextBlock['type'])->toEqual('TextBlock');
+});
 
-        $this->assertEquals('Title', $titleTextBlock['text']);
-        $this->assertEquals('TextBlock', $titleTextBlock['type']);
-    }
-
-    public function test_it_can_return_the_payload_as_an_array(): void
-    {
-        $expectedPayload = [
-            'type' => 'message',
-            'attachments' => [
-                [
-                    'contentType' => 'application/vnd.microsoft.card.adaptive',
-                    "contentUrl" => null,
-                    'content' => [
-                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
-                        'type' => 'AdaptiveCard',
-                        'version' => '1.5',
-                        'body' => [
-                            [
-                                'type' => 'TextBlock',
-                                'wrap' => true,
-                                'style' => 'heading',
-                                'text' => 'Title',
-                                'weight' => 'bolder',
-                                'size' => 'large',
-                            ],
-                            [
-                                'type' => 'TextBlock',
-                                'text' => 'Text',
-                                'wrap' => true,
-                                'spacing' => null,
-                                'separator' => null,
-                                'horizontalAlignment' => null,
-                                'maxLines' => null,
-                                'style' => null,
-                                'fontType' => null,
-                                'size' => null,
-                                'weight' => null,
-                                'isSubtle' => null,
-                                'color' => null
-                            ]
+it('can return the payload as an array', function () {
+    $expectedPayload = [
+        'type' => 'message',
+        'attachments' => [
+            [
+                'contentType' => 'application/vnd.microsoft.card.adaptive',
+                'contentUrl' => null,
+                'content' => [
+                    '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
+                    'type' => 'AdaptiveCard',
+                    'version' => '1.5',
+                    'body' => [
+                        [
+                            'type' => 'TextBlock',
+                            'wrap' => true,
+                            'style' => 'heading',
+                            'text' => 'Title',
+                            'weight' => 'bolder',
+                            'size' => 'large',
                         ],
-                        'actions' => []
-                    ]
-                ]
-            ]
-        ];
-
-        $card = new MicrosoftTeamsAdaptiveCard();
-        $card->title('Title');
-        $card->content([
-            TextBlock::create()->setText('Text')
-        ]);
-
-        $this->assertEquals($expectedPayload, $card->toArray());
-    }
-
-    public function test_the_recipients_webhook_url_can_be_set(): void
-    {
-        $card = new MicrosoftTeamsAdaptiveCard();
-        $card->to('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567');
-        $this->assertEquals('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567', $card->getWebhookUrl());
-    }
-
-    public function test_it_throws_an_exception_if_the_recipients_webhook_url_is_an_empty_string(): void
-    {
-        $card = new MicrosoftTeamsAdaptiveCard();
-        $this->expectException(CouldNotSendNotification::class);
-        $card->to('');
-    }
-
-    public function test_it_can_show_the_webhook_url(): void
-    {
-        $card = new MicrosoftTeamsAdaptiveCard();
-
-        $card->to('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567');
-        $this->assertEquals('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567', $card->getWebhookUrl());
-    }
-
-    public function test_text_blocks_can_be_set_in_content(): void
-    {
-        $expectedPayload = [
-            'type' => 'message',
-            'attachments' => [
-                [
-                    'contentType' => 'application/vnd.microsoft.card.adaptive',
-                    "contentUrl" => null,
-                    'content' => [
-                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
-                        'type' => 'AdaptiveCard',
-                        'version' => '1.5',
-                        'body' => [
-                            [
-                                'type' => 'TextBlock',
-                                'text' => 'Text',
-                                'wrap' => true,
-                                'spacing' => null,
-                                'separator' => null,
-                                'horizontalAlignment' => null,
-                                'maxLines' => null,
-                                'style' => null,
-                                'fontType' => null,
-                                'size' => null,
-                                'weight' => null,
-                                'isSubtle' => null,
-                                'color' => null
-                            ],
-                            [
-                                'type' => 'TextBlock',
-                                'text' => 'Text',
-                                'wrap' => true,
-                                'spacing' => null,
-                                'separator' => null,
-                                'horizontalAlignment' => null,
-                                'maxLines' => null,
-                                'style' => null,
-                                'fontType' => null,
-                                'size' => null,
-                                'weight' => null,
-                                'isSubtle' => null,
-                                'color' => null
-                            ]
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Text',
+                            'wrap' => true,
+                            'spacing' => null,
+                            'separator' => null,
+                            'horizontalAlignment' => null,
+                            'maxLines' => null,
+                            'style' => null,
+                            'fontType' => null,
+                            'size' => null,
+                            'weight' => null,
+                            'isSubtle' => null,
+                            'color' => null,
                         ],
-                        'actions' => []
-                    ]
-                ]
-            ]
-        ];
+                    ],
+                    'actions' => [],
+                ],
+            ],
+        ],
+    ];
 
-        $card = new MicrosoftTeamsAdaptiveCard();
-        $card->content([
-            TextBlock::create()->setText('Text'),
-            TextBlock::create()->setText('Text')
-        ]);
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->title('Title');
+    $card->content([
+        TextBlock::create()->setText('Text'),
+    ]);
 
-        $this->assertEquals($expectedPayload, $card->toArray());
-    }
+    expect($card->toArray())->toEqual($expectedPayload);
+});
 
-    public function test_icons_can_be_set_in_content(): void
-    {
-        $expectedPayload = [
-            'type' => 'message',
-            'attachments' => [
-                [
-                    'contentType' => 'application/vnd.microsoft.card.adaptive',
-                    "contentUrl" => null,
-                    'content' => [
-                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
-                        'type' => 'AdaptiveCard',
-                        'version' => '1.5',
-                        'body' => [
-                            [
-                                'type' => 'Icon',
-                                'name' => 'Alert',
-                                'spacing' => null,
-                                'separator' => null,
-                                'horizontalAlignment' => null,
-                                'style' => null,
-                                'color' => null,
-                                'size' => null
-                            ],
-                            [
-                                'type' => 'Icon',
-                                'name' => 'Alert',
-                                'spacing' => null,
-                                'separator' => null,
-                                'horizontalAlignment' => null,
-                                'style' => null,
-                                'color' => null,
-                                'size' => null
-                            ]
+it('can set the recipients webhook url', function () {
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->to('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567');
+
+    expect($card->getWebhookUrl())->toEqual('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567');
+});
+
+it('throws an exception if the recipients webhook url is an empty string', function () {
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->to('');
+})->throws(CouldNotSendNotification::class);
+
+it('can show the webhook url', function () {
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->to('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567');
+
+    expect($card->getWebhookUrl())->toEqual('https://outlook.office.com/webhook/abc-01234/IncomingWebhook/def-567');
+});
+
+it('can set text blocks in content', function () {
+    $expectedPayload = [
+        'type' => 'message',
+        'attachments' => [
+            [
+                'contentType' => 'application/vnd.microsoft.card.adaptive',
+                'contentUrl' => null,
+                'content' => [
+                    '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
+                    'type' => 'AdaptiveCard',
+                    'version' => '1.5',
+                    'body' => [
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Text',
+                            'wrap' => true,
+                            'spacing' => null,
+                            'separator' => null,
+                            'horizontalAlignment' => null,
+                            'maxLines' => null,
+                            'style' => null,
+                            'fontType' => null,
+                            'size' => null,
+                            'weight' => null,
+                            'isSubtle' => null,
+                            'color' => null,
                         ],
-                        'actions' => []
-                    ]
-                ]
-            ]
-        ];
+                        [
+                            'type' => 'TextBlock',
+                            'text' => 'Text',
+                            'wrap' => true,
+                            'spacing' => null,
+                            'separator' => null,
+                            'horizontalAlignment' => null,
+                            'maxLines' => null,
+                            'style' => null,
+                            'fontType' => null,
+                            'size' => null,
+                            'weight' => null,
+                            'isSubtle' => null,
+                            'color' => null,
+                        ],
+                    ],
+                    'actions' => [],
+                ],
+            ],
+        ],
+    ];
 
-        $card = new MicrosoftTeamsAdaptiveCard();
-        $card->content([
-            Icon::create()->setName('Alert'),
-            Icon::create()->setName('Alert')
-        ]);
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->content([
+        TextBlock::create()->setText('Text'),
+        TextBlock::create()->setText('Text'),
+    ]);
 
-        $this->assertEquals($expectedPayload, $card->toArray());
-    }
+    expect($card->toArray())->toEqual($expectedPayload);
+});
 
-    public function test_factsets_can_be_set_in_content(): void
-    {
-        $expectedPayload = [
-            'type' => 'message',
-            'attachments' => [
-                [
-                    'contentType' => 'application/vnd.microsoft.card.adaptive',
-                    "contentUrl" => null,
-                    'content' => [
-                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
-                        'type' => 'AdaptiveCard',
-                        'version' => '1.5',
-                        'body' => [
-                            [
-                                'type' => 'FactSet',
-                                'facts' => [
-                                    [
-                                        'title' => 'Fact',
-                                        'value' => 'Value'
-                                    ],
-                                    [
-                                        'title' => 'Fact',
-                                        'value' => 'Value'
-                                    ]
+it('can set icons in content', function () {
+    $expectedPayload = [
+        'type' => 'message',
+        'attachments' => [
+            [
+                'contentType' => 'application/vnd.microsoft.card.adaptive',
+                'contentUrl' => null,
+                'content' => [
+                    '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
+                    'type' => 'AdaptiveCard',
+                    'version' => '1.5',
+                    'body' => [
+                        [
+                            'type' => 'Icon',
+                            'name' => 'Alert',
+                            'spacing' => null,
+                            'separator' => null,
+                            'horizontalAlignment' => null,
+                            'style' => null,
+                            'color' => null,
+                            'size' => null,
+                        ],
+                        [
+                            'type' => 'Icon',
+                            'name' => 'Alert',
+                            'spacing' => null,
+                            'separator' => null,
+                            'horizontalAlignment' => null,
+                            'style' => null,
+                            'color' => null,
+                            'size' => null,
+                        ],
+                    ],
+                    'actions' => [],
+                ],
+            ],
+        ],
+    ];
+
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->content([
+        Icon::create()->setName('Alert'),
+        Icon::create()->setName('Alert'),
+    ]);
+
+    expect($card->toArray())->toEqual($expectedPayload);
+});
+
+it('can set factsets in content', function () {
+    $expectedPayload = [
+        'type' => 'message',
+        'attachments' => [
+            [
+                'contentType' => 'application/vnd.microsoft.card.adaptive',
+                'contentUrl' => null,
+                'content' => [
+                    '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
+                    'type' => 'AdaptiveCard',
+                    'version' => '1.5',
+                    'body' => [
+                        [
+                            'type' => 'FactSet',
+                            'facts' => [
+                                [
+                                    'title' => 'Fact',
+                                    'value' => 'Value',
                                 ],
-                                'spacing' => null,
-                                'separator' => null
+                                [
+                                    'title' => 'Fact',
+                                    'value' => 'Value',
+                                ],
                             ],
+                            'spacing' => null,
+                            'separator' => null,
                         ],
-                        'actions' => []
-                    ]
-                ]
-            ]
-        ];
+                    ],
+                    'actions' => [],
+                ],
+            ],
+        ],
+    ];
 
-        $card = new MicrosoftTeamsAdaptiveCard();
-        $card->content([
-            FactSet::create()->setFacts([
-                Fact::create()->setTitle('Fact')->setValue('Value'),
-                Fact::create()->setTitle('Fact')->setValue('Value')
-            ])
-        ]);
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->content([
+        FactSet::create()->setFacts([
+            Fact::create()->setTitle('Fact')->setValue('Value'),
+            Fact::create()->setTitle('Fact')->setValue('Value'),
+        ]),
+    ]);
 
-        $this->assertEquals($expectedPayload, $card->toArray());
-    }
+    expect($card->toArray())->toEqual($expectedPayload);
+});
 
+it('can set actions', function () {
+    $expectedPayload = [
+        'type' => 'message',
+        'attachments' => [
+            [
+                'contentType' => 'application/vnd.microsoft.card.adaptive',
+                'contentUrl' => null,
+                'content' => [
+                    '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
+                    'type' => 'AdaptiveCard',
+                    'version' => '1.5',
+                    'body' => [],
+                    'actions' => [
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'title' => 'Visit Website',
+                            'url' => 'https://foo.bar',
+                            'mode' => null,
+                            'style' => null,
+                        ],
+                        [
+                            'type' => 'Action.OpenUrl',
+                            'title' => 'Visit Website2',
+                            'url' => 'https://foo.bar',
+                            'mode' => null,
+                            'style' => null,
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ];
 
-    public function test_actions_can_be_set(): void
-    {
-        $expectedPayload = [
-            'type' => 'message',
-            'attachments' => [
-                [
-                    'contentType' => 'application/vnd.microsoft.card.adaptive',
-                    "contentUrl" => null,
-                    'content' => [
-                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
-                        'type' => 'AdaptiveCard',
-                        'version' => '1.5',
-                        'body' => [],
-                        'actions' => [
-                            [
-                                'type' => 'Action.OpenUrl',
-                                'title' => 'Visit Website',
-                                'url' => 'https://foo.bar',
-                                'mode' => null,
-                                'style' => null
-                            ],
-                            [
-                                'type' => 'Action.OpenUrl',
-                                'title' => 'Visit Website2',
-                                'url' => 'https://foo.bar',
-                                'mode' => null,
-                                'style' => null
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->actions([
+        ActionOpenUrl::create()->setTitle('Visit Website')->setUrl('https://foo.bar'),
+        ActionOpenUrl::create()->setTitle('Visit Website2')->setUrl('https://foo.bar'),
+    ]);
 
-        $card = new MicrosoftTeamsAdaptiveCard();
-        $card->actions([
-            ActionOpenUrl::create()->setTitle('Visit Website')->setUrl('https://foo.bar'),
-            ActionOpenUrl::create()->setTitle('Visit Website2')->setUrl('https://foo.bar')
-        ]);
+    expect($card->toArray())->toEqual($expectedPayload);
+});
 
-        $this->assertEquals($expectedPayload, $card->toArray());
-    }
+it('can set full width', function () {
+    $card = new MicrosoftTeamsAdaptiveCard;
+    $card->fullWidth();
 
-    public function test_full_width_can_be_set(): void
-    {
-        $card = new MicrosoftTeamsAdaptiveCard();
+    $payload = $card->toArray();
+    $cardWidth = $payload['attachments'][0]['content']['msteams']['width'];
 
-        $card->fullWidth();
-
-        $payload = $card->toArray();
-        $cardWidth = $payload['attachments'][0]['content']['msteams']['width'];
-
-        $this->assertEquals('Full', $cardWidth);
-    }
-}
+    expect($cardWidth)->toEqual('Full');
+});
