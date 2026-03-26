@@ -9,7 +9,6 @@ class CouldNotSendNotification extends \Exception
     /**
      * Thrown when there's a bad request and an error is responded.
      *
-     * @param ClientException $exception
      *
      * @return static
      */
@@ -28,7 +27,6 @@ class CouldNotSendNotification extends \Exception
     /**
      * Thrown when we're unable to communicate with Microsoft Teams.
      *
-     * @param \Exception $exception
      *
      * @return static
      */

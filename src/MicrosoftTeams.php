@@ -3,6 +3,7 @@
 namespace NotificationChannels\MicrosoftTeams;
 
 use Exception;
+use GuzzleHttp\Client;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use NotificationChannels\MicrosoftTeams\Exceptions\CouldNotSendNotification;
@@ -13,13 +14,10 @@ class MicrosoftTeams
     /**
      * API HTTP client.
      *
-     * @var \GuzzleHttp\Client
+     * @var Client
      */
     protected $httpClient;
 
-    /**
-     * @param \GuzzleHttp\Client $http
-     */
     public function __construct(HttpClient $http)
     {
         $this->httpClient = $http;
@@ -28,12 +26,8 @@ class MicrosoftTeams
     /**
      * Send a message to a MicrosoftTeams channel.
      *
-     * @param string $url
-     * @param array $data
      *
      * @throws CouldNotSendNotification
-     *
-     * @return ResponseInterface|null
      */
     public function send(string $url, array $data): ?ResponseInterface
     {
