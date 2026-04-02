@@ -4,7 +4,9 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/microsoft-teams.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/microsoft-teams)
 
-This package makes it easy to send notifications using [Microsoft Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) with Laravel 5.5+, 6.x, 7.x, 8.x, 9.x, 10.x, 11.x and 12.x
+This package makes it easy to send notifications using [Microsoft Teams](https://products.office.com/en-US/microsoft-teams/group-chat-software) with 11.x and 12.x.
+
+*This package also supports lower versions of Laravel, however they are not maintained anymore. If you are running Laravel version <12 please use v2.1.x or lower.*
 
 **Since v2 we transitioned from traditional message cards to [MS Adaptive Cards](https://adaptivecards.io). In case you need to upgrade please check out our [Migration Guide](/UPGRADE.md).**
 
