@@ -2,7 +2,7 @@
 
 namespace NotificationChannels\MicrosoftTeams\Exceptions;
 
-use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\Client\RequestException;
 
 class CouldNotSendNotification extends \Exception
 {
@@ -12,13 +12,9 @@ class CouldNotSendNotification extends \Exception
      *
      * @return static
      */
-    public static function microsoftTeamsRespondedWithAnError(ClientException $exception)
+    public static function microsoftTeamsRespondedWithAnError(RequestException $exception)
     {
-        if (! $exception->hasResponse()) {
-            return new static('Microsoft Teams responded with an error but no response body found');
-        }
-
-        $statusCode = $exception->getResponse()->getStatusCode();
+        $statusCode = $exception->response->status();
         $description = $exception->getMessage();
 
         return new static("Microsoft Teams responded with an error `{$statusCode} - {$description}`");

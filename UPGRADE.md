@@ -1,5 +1,9 @@
 # Upgrade Guide
 
+## Migrating to Laravel's HTTP client
+
+If you instantiate `MicrosoftTeams` manually, pass an `Illuminate\Http\Client\Factory` instead of a Guzzle client.
+
 ## Migrating from Message Cards to Adaptive Cards
 
 ### Overview

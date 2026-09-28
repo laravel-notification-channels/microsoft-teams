@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\MicrosoftTeams;
 
-use GuzzleHttp\Client as HttpClient;
 use Illuminate\Container\Container;
+use Illuminate\Http\Client\Factory;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,9 +18,9 @@ class MicrosoftTeamsServiceProvider extends ServiceProvider
 
         $this->app->when(MicrosoftTeamsChannel::class)
             ->needs(MicrosoftTeams::class)
-            ->give(function () {
+            ->give(function (Container $app) {
                 return new MicrosoftTeams(
-                    new HttpClient
+                    $app->make(Factory::class)
                 );
             });
     }

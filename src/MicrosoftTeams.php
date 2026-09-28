@@ -3,9 +3,8 @@
 namespace NotificationChannels\MicrosoftTeams;
 
 use Exception;
-use GuzzleHttp\Client;
-use GuzzleHttp\Client as HttpClient;
-use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\Client\Factory as HttpClient;
+use Illuminate\Http\Client\RequestException;
 use NotificationChannels\MicrosoftTeams\Exceptions\CouldNotSendNotification;
 use Psr\Http\Message\ResponseInterface;
 
@@ -14,7 +13,7 @@ class MicrosoftTeams
     /**
      * API HTTP client.
      *
-     * @var Client
+     * @var HttpClient
      */
     protected $httpClient;
 
@@ -36,15 +35,13 @@ class MicrosoftTeams
         }
 
         try {
-            $response = $this->httpClient->post($url, [
-                'json' => $data,
-            ]);
-        } catch (ClientException $exception) {
+            $response = $this->httpClient->post($url, $data)->throw();
+        } catch (RequestException $exception) {
             throw CouldNotSendNotification::microsoftTeamsRespondedWithAnError($exception);
         } catch (Exception $exception) {
             throw CouldNotSendNotification::couldNotCommunicateWithMicrosoftTeams($exception);
         }
 
-        return $response;
+        return $response->toPsrResponse();
     }
 }
