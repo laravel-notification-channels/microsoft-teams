@@ -1,6 +1,6 @@
 <?php
 
-use GuzzleHttp\Psr7\Response;
+use Illuminate\Http\Client\Factory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\MicrosoftTeams\ContentBlocks\TextBlock;
@@ -61,7 +61,7 @@ it('can send a notification', function () {
             $payload
         )
         ->once()
-        ->andReturn(new Response(200));
+        ->andReturn(Factory::response()->wait());
 
     $channel = new MicrosoftTeamsChannel($this->microsoftTeams);
 
@@ -123,7 +123,7 @@ it('does send a notification if the notifiable does not provide a microsoft team
             $payload
         )
         ->once()
-        ->andReturn(new Response(200));
+        ->andReturn(Factory::response()->wait());
 
     $channel = new MicrosoftTeamsChannel($this->microsoftTeams);
 
